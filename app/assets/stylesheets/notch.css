@@ -1,0 +1,12 @@
+.ranking_line{
+	border-bottom: 1px solid #acabab;
+}
+
+p.n_ranking_numbers {
+	display: inline-block;
+	padding: 5px 13px;
+	background-color: #acabab;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 15px;
+}

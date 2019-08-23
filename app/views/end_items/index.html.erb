@@ -1,61 +1,19 @@
 <% if end_user_signed_in? %>
-  <%= render 'end_header/login_header' %>
+	<%= render "end_header/login_header" %>
 <% else %>
-  <%= render 'end_header/not_login_header' %>
+	<%= render "end_header/not_login_header" %>
 <% end %>
 
 <div class="container">
- 	<div class="row">
-		<div class="col-xs-9">
-			<h4>新着シングル・アルバム!!</h4>
-			<ul>
-				<% @new_items.each do |item| %>
-					<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
-					<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-					<li><%= item.artist.artist_name %></li>
-					<li><%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil %></li>
-				<% end %>
-			</ul>
-			<%= paginate @new_items %>
-		</div>
+	<div class="row">
+		<%= render :partial => "new_items" %>
 
-		<%= render 'ranking', ranking: @ranking %>
+		<%= render "ranking" %>
 
-		<div class="col-xs-9">
-			<h4><%= (BigDecimal("1000") * BigDecimal(@tax_rate)).ceil %>円以下で購入可能!!</h4>
-			<ul>
-				<% @cheap_items.each do |item| %>
-					<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
-					<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-					<li><%= item.artist.artist_name %></li>
-					<li><%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil %></li>
-				<% end %>
-			</ul>
-			<%= paginate @cheap_items %>
-		</div>
-		<div class="col-xs-9">
-			<h4>残り在庫あとわずか!!</h4>
-			<ul>
-				<% @few_items.each do |item| %>
-					<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
-					<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-					<li><%= item.artist.artist_name %></li>
-					<li><%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil %></li>
-				<% end %>
-			</ul>
-			<%= paginate @few_items %>
-		</div>
-		<div class="col-xs-9">
-			<h4>商品一覧</h4>
-			<ul>
-				<% @all_items.each do |item| %>
-					<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
-					<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-					<li><%= item.artist.artist_name %></li>
-					<li><%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil %></li>
-				<% end %>
-			</ul>
-			<%= paginate @all_items %>
-		</div>
+		<%= render :partial => "cheap_items" %>
+
+		<%= render :partial => "few_items" %>
+
+		<%= render :partial => "all_items" %>
 	</div>
 </div>

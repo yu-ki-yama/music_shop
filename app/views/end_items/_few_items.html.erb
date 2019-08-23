@@ -1,0 +1,12 @@
+<div id="few_items" class="col-xs-9">
+	<h4>残り在庫あとわずか!!</h4>
+	<ul>
+		<% @few_items.each do |item| %>
+			<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
+			<li><%= link_to item.item_name, end_item_path(item.id) %></li>
+			<li><%= item.artist.artist_name %></li>
+			<li><%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil %></li>
+		<% end %>
+	</ul>
+	<%= paginate @few_items, remote: :true %>
+</div>
