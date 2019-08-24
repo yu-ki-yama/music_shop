@@ -1,12 +1,30 @@
-<div id="cheap_items" class="col-xs-9">
-	<h4><%= (BigDecimal("1000") * BigDecimal(@tax_rate)).ceil %>円以下で購入可能!!</h4>
-	<ul>
-		<% @cheap_items.each do |item| %>
-			<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
-			<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-			<li><%= item.artist.artist_name %></li>
-			<li><%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil %></li>
-		<% end %>
-	</ul>
-	<%= paginate @cheap_items, remote: :true %>
+<div id="cheap_items">
+	<div class="col-xs-12">
+		<h3><%= (BigDecimal("1000") * BigDecimal(@tax_rate)).ceil %>円以下で購入可能!!</h3>
+	</div>
+	<div class="row">
+		<div class="col-xs-1">
+			<%= link_to_prev_page @new_items, fa_icon("angle-double-left"), param_name: :"cheap_page", remote: :true %>
+		</div>
+		<div class="col-xs-10">
+			<div class="row">
+				<ul>
+					<% @cheap_items.each do |item| %>
+						<div class="col-xs-3">
+							<li><%= link_to end_item_path(item.id) do %>
+									<%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %>
+								<% end %>
+							</li>
+							<li><%= link_to item.item_name, end_item_path(item.id) %></li>
+							<li><%= item.artist.artist_name %></li>
+							<li>¥<%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil.to_s(:delimited) %></li>
+						</div>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<div class="col-xs-1">
+			<%= link_to_next_page @new_items, fa_icon("angle-double-right"), param_name: :"cheap_page", remote: :true %>
+		</div>
+	</div>
 </div>

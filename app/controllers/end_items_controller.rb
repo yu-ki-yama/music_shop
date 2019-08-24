@@ -2,10 +2,10 @@ class EndItemsController < ApplicationController
 
 	def index
 		@tax_rate = "1.08"
-		@new_items = Item.includes(:artist).page(params[:page]).per(1).order(id: "DESC")
-		@cheap_items = Item.includes(:artist).where("price <= ?", (BigDecimal("1000") * BigDecimal(@tax_rate)).ceil).page(params[:page]).per(1).order(id: "DESC")
-		@few_items = Item.includes(:artist).where("stock <= ?", 3).page(params[:page]).per(1).order(id: "DESC")
-		@all_items = Item.includes(:artist).page(params[:page]).per(1).order(id: "DESC")
+		@new_items = Item.includes(:artist).page(params[:new_page]).per(4).order(id: "DESC")
+		@cheap_items = Item.includes(:artist).where("price <= ?", (BigDecimal("1000") * BigDecimal(@tax_rate)).ceil).page(params[:cheap_page]).per(4).order(id: "DESC")
+		@few_items = Item.includes(:artist).where("stock <= ?", 3).page(params[:few_page]).per(4).order(id: "DESC")
+		@all_items = Item.includes(:artist).page(params[:all_page]).per(20).order(id: "DESC")
 		respond_to do |format|
 			format.html
 			format.js

@@ -1,12 +1,29 @@
-<div id="all_items" class="col-xs-9">
-	<h4>商品一覧</h4>
-	<ul>
-		<% @all_items.each do |item| %>
-			<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
-			<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-			<li><%= item.artist.artist_name %></li>
-			<li><%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil %></li>
-		<% end %>
-	</ul>
-	<%= paginate @all_items, remote: :true %>
+<div id="all_items">
+	<div class="col-xs-12">
+		<h3>商品一覧</h3>
+	</div>
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="row">
+				<ul>
+					<% @all_items.each do |item| %>
+						<div class="col-xs-3">
+							<li><%= link_to end_item_path(item.id) do %>
+									<%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %>
+								<% end %>
+							</li>
+							<li><%= link_to item.item_name, end_item_path(item.id) %></li>
+							<li><%= item.artist.artist_name %></li>
+							<li>¥<%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil.to_s(:delimited) %></li>
+						</div>
+					<% end %>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<%= paginate @all_items, param_name: :"all_page", remote: :true %>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -6,14 +6,14 @@
 
 <div class="container">
 	<div class="row">
-		<%= render :partial => "new_items" %>
-
+		<div class="col-xs-9">
+			<div class="row">
+				<%= render :partial => "new_items" %>
+				<%= render :partial => "cheap_items" %>
+				<%= render :partial => "few_items" %>
+				<%= render :partial => "all_items" %>
+			</div>
+		</div>
 		<%= render "ranking" %>
-
-		<%= render :partial => "cheap_items" %>
-
-		<%= render :partial => "few_items" %>
-
-		<%= render :partial => "all_items" %>
 	</div>
 </div>
