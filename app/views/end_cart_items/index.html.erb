@@ -6,6 +6,12 @@
 <div class="y_item_content">
   <h2 class="y_h2">カート</h2>
 
+  <% if session[:cart_error] %>
+    <h3 class="y_h3"> <%= session.delete(:error) %></h3>
+    <% session.delete(:cart_error) %>
+    <% session.delete(:error) %>
+  <% end %>
+
   <%= form_with url: end_cart_item_path("cart"), method: :put, local: true do |f| %>
     <div class="y_cart_submit">
       <% if @is_able_purchase_list.length == 0 %>
@@ -31,7 +37,7 @@
             <div><%= cart["name"] %></div>
             <div>アーティスト名</div>
             <div><%=cart['artist'] %></div>
-            <div><%= cart['price'] * @tax / 100 %>円（税込み）</div>
+            <div><%= (cart['price'] * @tax / 100).to_s(:delimited)%>円（税込み）</div>
           </div>
 
         </div>

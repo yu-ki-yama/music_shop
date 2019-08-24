@@ -541,9 +541,17 @@ input[readonly] {
 }
 
 /*----------------------------------------------------------*/
+.y_item_content > h3{
+    color: red;
+    text-align: center;
+}
 
 .y_cart_content > img{
     display: inline-block;
+}
+
+.y_cart_content{
+    background-color: #d3eaff;
 }
 
 .y_cart_item{
@@ -588,7 +596,6 @@ input[readonly] {
 }
 
 .y_cart_counter_group{
-    width: 200px;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
@@ -645,12 +652,11 @@ input[readonly] {
     position: relative;
     width: 1000px;
     padding: 0 50px;
-    background-color: #ffa2e2;
     font-size: 20px;
+    margin-top: 40px;
 }
 
 .y_purchases_main_content{
-    background-color: #a5ffa6;
 }
 
 .y_purchases_sub_content{
@@ -658,7 +664,7 @@ input[readonly] {
     width: 300px;
     border: 2px solid black;
     padding: 20px;
-    background-color: #89fff7;
+    background-color: #ffe4fb;
     top: 0;
     left: 650px;
 }
@@ -677,6 +683,7 @@ input[readonly] {
 
 .y_purchases_detail{
     position: relative;
+    background-color: #ffe4fb;
 }
 
 .y_purchases_item_detail{
@@ -701,4 +708,100 @@ input[readonly] {
     text-align: center;
     display: inline-block;
     color: red;
+}
+
+.y_purchases_adress_detail{
+    margin-top: 20px;
+}
+
+.y_purchases_adress_detail > p{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.y_purchases_address_select{
+    width: 350px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.y_purchases_address_select > select{
+    width: 300px;
+}
+
+.y_purchases_address_add{
+    width: 120px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.y_purchases_adress_detail > div{
+    margin-left: 10px;
+}
+
+.y_purchases_adress_detail > .y_purchases_address_display{
+    margin-left: 20px;
+}
+
+.y_purchases_address_tel{
+    width: 340px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.y_purchases_address_edit{
+    width: 120px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    margin-left: 10px;
+}
+
+.y_purchases_sub_content > select{
+    width: 90%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.y_purchases_sub_content > p{
+    font-weight: bold;
+}
+
+.y_purchases_sub_price > div:nth-child(odd){
+    margin-left: 10px;
+    width: 100px;
+    display: inline-block;
+}
+
+.y_purchases_sub_price > div:nth-child(even){
+    width: 140px;
+    display: inline-block;
+    text-align: right;
+}
+
+.y_purchases_sub_total_price{
+    border-top: solid 1px gray;
+    padding-top: 5px;
+    color: red;
+}
+
+.y_purchases_sub_total_price > div:nth-child(1){
+    display: inline-block;
+    width: 100px;
+}
+
+.y_purchases_sub_total_price > div:nth-child(2){
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+}
+
+.y_purchases_submit{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.y_purchases_submit > input{
+    font-size: 25px;
 }
