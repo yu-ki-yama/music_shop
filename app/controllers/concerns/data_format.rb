@@ -78,7 +78,6 @@ module DataFormat
       end
 
       array
-
     end
 
     def price_sum(tax, cart_model)

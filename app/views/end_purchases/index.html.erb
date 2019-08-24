@@ -1,33 +1,55 @@
-<% if end_user_signed_in? %>
-  <%= render 'end_header/login_header' %>
-<% else %>
-  <%= render 'end_header/not_login_header' %>
-<% end %>
+<%# if end_user_signed_in? %>
+  <%#= render 'end_header/login_header' %>
+<%# else %>
+  <%#= render 'end_header/not_login_header' %>
+<%# end %>
 
-<%= form_with url: end_purchases_path, method: :post, local: true do |f| %>
+<div class="y_purchases_content">
+  <%= form_with url: end_purchases_path, method: :post, local: true do |f| %>
 
-  <% @carts.each do |cart| %>
-    <%= image_tag attachment_url(cart['item'], :item_image, :fill, 80, 80, format: "jpg"),class: 'attachment user profile_image fallback' %><br>
-    <%= cart["name"] %><br>
-    <%= cart['artist'] %><br>
-    <%= cart['price'] %><br>
-    <%= cart['purchase_quantity'] %><br>
-    <%= f.select "address_name#{cart['id']}", address_name_arrays(@addresses) %><br>
-    <%= @addresses[0]["name"] %><br>
-    <%= @addresses[0]['postal_code'] %><br>
-    <%= @addresses[0]['address'] %><br>
-    電話番号<%= @addresses[0]['telephone_number'] %><br>
+    <div class="y_purchases_main_content">
+      <% @carts.each do |cart| %>
+        <div class="y_purchases_detail">
+          <%= image_tag attachment_url(cart['item'], :item_image, :fill, 100, 100, format: "jpg"),class: 'attachment user profile_image fallback' %><br>
+
+          <div class="y_purchases_item_detail">
+            <%= cart["name"] %><br>
+            <%= cart['artist'] %><br>
+
+              <div class="y_purchases_price">
+                ￥ <%= cart['price'] %>(税込み)
+              </div>
+
+              <div class="y_purchases_quantity">
+                数量<%= cart['purchase_quantity'] %>
+              </div>
+
+          </div>
+
+          <div class="y_purchases_adress_detail">
+            <%= f.select "address_name#{cart['id']}", address_name_arrays(@addresses) %> <%= link_to "宛先追加", new_end_address_path, class: "btn btn-primary" %> <br>
+            <%= @addresses[0]["name"] %><br>
+            <%= @addresses[0]['postal_code'] %><br>
+            <%= @addresses[0]['address'] %><br>
+            電話番号<%= @addresses[0]['telephone_number'] %> <%= link_to "宛先編集", edit_end_user_path(current_end_user["id"]), class: "btn btn-primary" %><br>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+
+
+
+    <div class="y_purchases_sub_content">
+      <%= f.select :method_of_payment, [ ['銀行振込', '銀行振込'], ['クレジットカード', 'クレジットカード'], ['代金引換', '代金引換'] ], :selected=>@user['usually_payment'] %><br>
+
+      注文内容確定<br>
+      商品の小計<br>
+      発送料・手数料<br>
+      ご請求額<br>
+      <%= f.submit '注文を確定する' %>
+    </div>
+
+
   <% end %>
-
-  <%= f.select :method_of_payment, [ ['銀行振込', '銀行振込'], ['クレジットカード', 'クレジットカード'], ['代金引換', '代金引換'] ], :selected=>@user['usually_payment'] %>
-
-  <div>
-    注文内容確定<br>
-    商品の小計<br>
-    発送料・手数料<br>
-    ご請求額<br>
-    <%= f.submit '注文を確定する' %>
-  </div>
-
-
-<% end %>
+</div>

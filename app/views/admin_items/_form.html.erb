@@ -13,12 +13,11 @@
     </div>
   <% end %>
 
-  <div class="y_codition_form">
+  <div class="y_condition_form">
     <%= f.radio_button :sale_condition, "販売中", class: "y_registration_radio_input",:checked => true %>
-    <%= f.label :sale_condition,"販売中", value: 0, class:"y_registration_radio_label" %>
-
+    <%= f.label :sale_condition,"販売中", value: "販売中", class:"y_registration_radio_label" %>
     <%= f.radio_button :sale_condition, "販売停止中", class: "y_registration_radio_input" %>
-    <%= f.label :sale_condition,"販売停止中", value: 1 , class:"y_registration_radio_label"%>
+    <%= f.label :sale_condition,"販売停止中", value: "販売停止中" , class:"y_registration_radio_label"%>
   </div>
 
   <div class="y_registration_pulldown_genre y_h3">ジャンル
