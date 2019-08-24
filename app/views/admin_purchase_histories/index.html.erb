@@ -1,30 +1,29 @@
-<%= render 'admin_header/header' %>
-
-< %= form_with url: search_admin_purchase_histories_path
-
-<table class="table">
+<%= render 'admin_header/header' %><br>
+<div style="width: 900px; margin: 0 auto;">
+<table class="table-bordered m_table">
   <thead>
     <tr>
-      <th>注文番号</th>
-      <th>注文日</th>
-      <th>ステータス</th>
-      <th>商品名</th>
-      <th>歌手名</th>
-      <th>枚数</th>
-      <th>詳細</th>
+      <th class="m_table-head" style="width: 45px">ID</th>
+      <th class="m_table-head" style="width: 110px">注文日</th>
+      <th class="m_table-head" style="width: 80px">状態</th>
+      <th class="m_table-head" style="width: 315px">シングル/アルバム名</th>
+      <th class="m_table-head" style="width: 260px">歌手名</th>
+      <th class="m_table-head" style="width: 45px">枚数</th>
+      <th class="m_table-head" style="width: 45px">詳細</th>
     </tr>
   </thead>
   <tbody>
     <% @purchase_histories.each do |p| %>
       <tr>
-        <td><%= p.purchase_detail_id %></td>
-        <td><%= p.created_at %></td>
+        <td><%= p.id %></td>
+        <td><%= p.created_at.strftime('%Y/%m/%d') %></td>
         <td><%= p.shipping_status %></td>
         <td><%= p.item_name_history %></td>
         <td><%= p.artist_name_history %></td>
         <td><%= p.sale_number %></td>
-        <td><%= link_to "", purchase_history_path(p.id), class: "glyphicon glyphicon-arrow-right" %></td>
+        <td><%= link_to "", admin_purchase_history_path(p.id), class: "glyphicon glyphicon-arrow-right" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>

@@ -4,6 +4,11 @@ class AdminPurchaseHistoriesController < ApplicationController
   end
   def show
     @purchase_history = PurchaseDetail.find(params[:id])
+    history = PurchaseHistory.find(@purchase_history.purchase_history_id)
+    @user_id = history.end_user_id
+    user = EndUser.find(history.end_user_id)
+    @last_name = user.last_name
+    @first_name = user.first_name
   end
   def update
     purchase_history = PurchaseDetail.update
