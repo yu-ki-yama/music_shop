@@ -1,17 +1,15 @@
-<% if end_user_signed_in? %>
-  <%= render 'end_header/login_header' %>
-<% else %>
-  <%= render 'end_header/not_login_header' %>
-<% end %>
+<%# if end_user_signed_in? %>
+  <%#= render 'end_header/login_header' %>
+<%# else %>
+  <%#= render 'end_header/not_login_header' %>
+<%# end %>
 
 <h2>購入履歴一覧</h2>
 
 <% @purchase_history_array.each do |details| %>
-  スタート<br>
+
   <% details.each do |detail| %>
     配送状況<%= detail['shipping_status'] %><br>
-    <%= puts '-------------------------------' %>
-    <%= puts detail['item_image_id'].inspect %>
     <%= image_tag attachment_url(detail, :item_image, :fill, 80, 80, format: "jpg"),class: 'attachment user profile_image fallback' %><br>
     <%= detail['item_name_history'] %><br>
     <%= detail['artist_name_history"'] %><br>
@@ -23,7 +21,6 @@
     <%= detail.purchase_history['total_price'] -  detail.purchase_history['shipping_charge']%><br>
     <%= detail.purchase_history['shipping_charge'] %><br>
     <%= detail.purchase_history['total_price'] %>
-
   <% end %>
-　エンド<br>
+
 <% end %>

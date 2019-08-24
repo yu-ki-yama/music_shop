@@ -1,27 +1,62 @@
-<% if end_user_signed_in? %>
-  <%= render 'end_header/login_header' %>
-<% else %>
-  <%= render 'end_header/not_login_header' %>
-<% end %>
+<%# if end_user_signed_in? %>
+  <%#= render 'end_header/login_header' %>
+<%# else %>
+  <%#= render 'end_header/not_login_header' %>
+<%# end %>
+<div class="y_item_content">
+  <h2 class="y_h2">カート</h2>
 
-<h1 class="cart-head">カート</h1>
+  <%= form_with url: end_cart_item_path("cart"), method: :put, local: true do |f| %>
+    <div class="y_cart_submit">
+      <% if @is_able_purchase_list.length == 0 %>
 
-<%= form_with url: end_cart_item_path("cart"), method: :put, local: true do |f| %>
+      <% elsif is_sale(@is_able_purchase_list) %>
+        <%= f.submit '購入確認画面へ', class: "btn btn-warning"%><br>
+      <% else %>
+        <%= f.submit '購入量を更新して購入画面へ', class: "btn btn-danger" %><br>
+      <% end %>
+    </div>
 
-  <% @carts.each do |cart| %>
-    <%= image_tag attachment_url(cart['item'], :item_image, :fill, 80, 80, format: "jpg"),class: 'attachment user profile_image fallback' %><br>
-    <%= cart["name"] %><br>
-    <%= cart['artist'] %><br>
-    <%= cart['price'] %><br>
-    <%= f.text_field cart['id'], value: cart['purchase_quantity'] %><br>
-    <%= cart['condition'] %><br>
-    <%= link_to "削除", end_cart_item_path(cart['id']), method: :delete %><br>
+    <% @carts.each_with_index do |cart, i| %>
+      <div class="y_cart_content">
+        <div class="y_cart_item">
+          <%= image_tag attachment_url(cart['item'], :item_image, :fill, 200, 200, format: "jpg"),class: 'attachment user profile_image fallback' %>
+
+          <div class="y_cart_item_detail">
+            <%if cart['condition'] == "販売中" %>
+              <div>シングル/アルバム名 <span class="y_cart_sale"><<%= cart['condition'] %>></span></div>
+            <% else %>
+              <div>シングル/アルバム名 <span class="y_cart_not_sale"><<%= cart['condition'] %>></span></div>
+            <% end %>
+            <div><%= cart["name"] %></div>
+            <div>アーティスト名</div>
+            <div><%=cart['artist'] %></div>
+            <div><%= cart['price'] * @tax / 100 %>円（税込み）</div>
+          </div>
+
+        </div>
+
+        <div class="y_cart_status">
+          <div class="y_cart_counter_group">
+            <%= f.hidden_field cart['id'], value: cart['purchase_quantity'], class: "purchase_quantity#{i}" %>
+            <input type="button" value="−" class="y_minus <%= i %>  btn btn-primary">
+            <span class="quantity<%= i %>"><%= cart['purchase_quantity'] %></span>
+            <input type="button" value="＋" class="y_plus <%= i %> btn btn-primary">
+          </div>
+
+          <div class="y_cart_status_group">
+            在庫数 ： <span class="stock<%= i %>"><%= cart['item']['stock'] %></span>枚
+          </div>
+
+          <div class="y_cart_delete">
+            <%= link_to "削除", end_cart_item_path(cart['id']), method: :delete, class: 'btn btn-danger' %>
+          </div>
+
+        </div>
+
+      </div>
+
+    <% end %>
+
   <% end %>
-
-  <% if is_sale(@is_able_purchase_list) %>
-    <%= f.submit '購入' %>
-  <% else %>
-    <%= f.submit '購入量更新' %>
-  <% end %>
-
-<% end %>
+</div>

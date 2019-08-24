@@ -16,7 +16,18 @@ class EndPurchasesController < ApplicationController
 
     is_able_purchase_list = stock_check_list(CartItem.where(end_user_id: current_end_user[:id]))
 
-    if is_sale(is_able_purchase_list)
+    sale_condition_check = true
+    cart_items.each do |cart|
+      if cart.item["sale_condition"] == '販売停止中'
+        sale_condition_check = false
+        break
+      end
+    end
+
+    if !sale_condition_check
+      redirect_to end_cart_items_path
+
+    elsif is_sale(is_able_purchase_list)
       total_price = price_sum(tax, cart_items)
       shipping_charge = shipping_charge_calc(params, cart_items)
       #購入履歴を作成
@@ -46,9 +57,22 @@ class EndPurchasesController < ApplicationController
 
   private
     def is_sale_check_filter
-      unless is_sale(stock_check_list(CartItem.where(end_user_id: current_end_user[:id])))
+      cart_items = CartItem.where(end_user_id: current_end_user[:id])
+
+      cart_items.each do |cart|
+        if cart.item["sale_condition"] == '販売停止中'
+          redirect_to end_cart_items_path
+        end
+      end
+
+      if stock_check_list(cart_items).length == 0
         redirect_to end_cart_items_path
       end
+
+      unless is_sale(stock_check_list(cart_items))
+        redirect_to end_cart_items_path
+      end
+
     end
 
 end
