@@ -6,17 +6,7 @@
 		<div class="col-xs-10 col-xs-offset-1">
 			<div class="row">
 				<ul>
-					<% @all_items.each do |item| %>
-						<div class="col-xs-3">
-							<li><%= link_to end_item_path(item.id) do %>
-									<%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %>
-								<% end %>
-							</li>
-							<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-							<li><%= item.artist.artist_name %></li>
-							<li>¥<%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil.to_s(:delimited) %></li>
-						</div>
-					<% end %>
+					<%= render partial: "contents_of_each", collection: @all_items, as: :item %>
 				</ul>
 			</div>
 			<div class="row">

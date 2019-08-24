@@ -12,9 +12,13 @@
 					<p class="n_ranking_numbers"><%= i %></p>
 				</div>
 				<div class="col-xs-10">
-					<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
-					<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-					<li ><%= item.artist.artist_name %></li>
+					<li>
+						<%= link_to end_item_path(item.id) do %>
+							<%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %>
+						<% end %>
+					</li>
+					<li><%= link_to item.item_name.truncate(20), end_item_path(item.id) %></li>
+					<li><%= item.artist.artist_name.truncate(20) %></li>
 				</div>
 			</div>
 			<p class="ranking_line"></p>

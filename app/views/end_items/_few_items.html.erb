@@ -4,27 +4,17 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-1">
-			<%= link_to_prev_page @new_items, fa_icon("angle-double-left"), param_name: :"few_page", remote: :true %>
+			<%= link_to_prev_page @few_items, fa_icon("angle-double-left 5x"), param_name: :"few_page", remote: :true %>
 		</div>
 		<div class="col-xs-10">
 			<div class="row">
 				<ul>
-					<% @few_items.each do |item| %>
-						<div class="col-xs-3">
-							<li><%= link_to end_item_path(item.id) do %>
-									<%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %>
-								<% end %>
-							</li>
-							<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-							<li><%= item.artist.artist_name %></li>
-							<li>¥<%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil.to_s(:delimited) %></li>
-						</div>
-					<% end %>
+					<%= render partial: "contents_of_each", collection: @few_items, as: :item %>
 				</ul>
 			</div>
 		</div>
 		<div class="col-xs-1">
-			<%= link_to_next_page @new_items, fa_icon("angle-double-right"), param_name: :"few_page", remote: :true %>
+			<%= link_to_next_page @few_items, fa_icon("angle-double-right 5x"), param_name: :"few_page", remote: :true %>
 		</div>
 	</div>
 </div>
