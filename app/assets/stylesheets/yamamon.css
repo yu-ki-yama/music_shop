@@ -1,0 +1,199 @@
+/*------------会員登録画面--------*/
+
+
+.t_body{
+	width: 1000px;
+
+}
+
+.t_head{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.t_area1{
+	margin-top: 40px;
+}
+
+
+.t_margin-head{
+	margin-top: 20px;
+}
+
+
+.t_sei{
+	  font-size: 30px;
+	  font-weight: normal;
+	  margin-left: 150px;
+}
+
+
+.t_na{
+	font-size: 30px;
+	font-weight: normal;
+	margin-right: 150px;
+	margin-left: 335px;
+}
+
+
+.t_sei-form{
+	font-size: 25px;
+    width: 325px;
+    margin-left: 150px;
+}
+
+
+.t_na-form{
+	font-size: 25px;
+	width: 325px;
+	margin-left: 40px;
+	margin-right: 150px;
+}
+
+
+.t_area2{
+	margin-top: 20px;
+}
+
+
+.t_sei-kana{
+	font-size: 30px;
+	margin-left: 150px;
+	font-weight: normal;
+}
+
+
+.t_sei-mei{
+	font-size: 30px;
+	margin-right: 150px;
+	margin-left: 305px;
+	font-weight: normal;
+}
+
+
+.t_sei-kana-form{
+	font-size: 25px;
+    width: 325px;
+	margin-left: 133px;
+}
+
+
+.t_sei-mei-form{
+	font-size: 25px;
+	width: 325px;
+	margin-left: 40px;
+	margin-right: 150px;
+}
+
+
+.t_title{
+	font-size: 30px;
+	margin-left: 150px;
+	margin-top: 20px;
+	font-weight: normal;
+}
+
+
+.t_title-new{
+	font-size: 30px;
+	margin-left: 150px;
+	font-weight: normal;
+}
+
+.t_form{
+	margin-left: 150px;
+	font-size: 25px;
+	width: 325px;
+}
+
+
+.t_address-form{
+	margin-left: 150px;
+	font-size: 25px;
+	width: 690px;
+}
+
+
+.t_position{
+	text-align: center;
+}
+
+
+.t_btn_btn-default{
+	margin-top: 70px;
+	margin-bottom: 50px;
+	height: 90px;
+	width: 400px;
+	font-size: 30px;
+
+}
+
+
+
+/*-------------ログイン画面-----------*/
+
+
+.t_body{
+	width: 1000px;
+	margin-top :30px;
+}
+
+
+.t_log-in-title1{
+	font-size: 30px;
+	margin-top: 20px;
+	margin-right: 395px;
+	margin-left: 395px;
+	font-weight: normal;
+
+}
+
+
+.t_log-in-title2{
+	font-size: 30px;
+	margin-top: 20px;
+	margin-right: 425px;
+	margin-left: 425px;
+	font-weight: normal;
+}
+
+
+.t_log-in-form{
+	font-size: 25px;
+	width: 325px;
+	margin-right: 337.5px;
+	margin-left: 337.5px;
+}
+
+
+.t_position{
+	text-align: center;
+}
+
+
+.t_btn_btn-default2{
+	margin-top: 70px;
+	margin-bottom: 50px;
+	/*margin-right: 337.5px;
+	margin-left: 337.5px;*/
+	height: 50px;
+	width: 325px;
+	font-size: 30px;
+
+}
+
+
+
+/*--------住所追加画面-------*/
+
+
+.t_title2{
+	font-size: 30px;
+	margin-left: 150px;
+	margin-top: 20px;
+	font-weight: normal;
+}
+
+

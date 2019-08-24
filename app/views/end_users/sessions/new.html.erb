@@ -4,20 +4,25 @@
   <%= render 'end_header/not_login_header' %>
 <% end %>
 
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="t_body">
+  <div class="t_head">ログイン画面</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  
+    <div class="field">
+     <%= f.label :email,"メールアドレス", class: 't_log-in-title1' %><br />
+     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 't_log-in-form' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <div class="field">
+     <%= f.label :password,"パスワード", class: 't_log-in-title2' %><br />
+     <%= f.password_field :password, autocomplete: "current-password", class: 't_log-in-form' %>
+   </div>
+
+    <div class="t_position">
+      <%= f.submit "ログイン", class: "t_btn_btn-default2" %>
+    </div>
+  
+   <% end %>
+</div>
