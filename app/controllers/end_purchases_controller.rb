@@ -4,10 +4,16 @@ class EndPurchasesController < ApplicationController
   include DataFormat
 
   def index
-    cart_items = CartItem.where(end_user_id: current_end_user['id'])
-    @carts = cart_items_format_array(cart_items)
-    @addresses = Address.where(end_user_id: current_end_user['id'].to_i)
-    @user = EndUser.find(current_end_user['id'])
+    if request.xhr?
+      @address = Address.where(end_user_id: current_end_user['id'].to_i)[params['num'].to_i]
+    else
+      cart_items = CartItem.where(end_user_id: current_end_user['id'])
+      @carts = cart_items_format_array(cart_items)
+      @addresses = Address.where(end_user_id: current_end_user['id'].to_i)
+      @user = EndUser.find(current_end_user['id'])
+      @tax = 108
+    end
+
   end
 
   def create
@@ -61,15 +67,21 @@ class EndPurchasesController < ApplicationController
 
       cart_items.each do |cart|
         if cart.item["sale_condition"] == '販売停止中'
+          session[:cart_error] = true
+          session[:error] = "販売停止中の商品が含まれています"
           redirect_to end_cart_items_path
         end
       end
 
       if stock_check_list(cart_items).length == 0
+        session[:cart_error] = true
+        session[:error] = "カートが空です"
         redirect_to end_cart_items_path
       end
 
       unless is_sale(stock_check_list(cart_items))
+        session[:cart_error] = true
+        session[:error] = "在庫数が足りていない商品が含まれています"
         redirect_to end_cart_items_path
       end
 

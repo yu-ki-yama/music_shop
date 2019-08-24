@@ -201,5 +201,46 @@ $(document).on("turbolinks:load", function() {
         });
     });
 
+    //住所選択時に非同期で住所を選択住所に変更
+    $(function(){
+        $('.y_purchases_address_select > select').on('change', function(e) {
+            const delimit = function(n) {
+                return String(n).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+            }
+            let target_select_id = e.target.id
+            let select_num = $("#" + target_select_id)[0].selectedIndex
+
+            $.ajax({
+                type:'GET',
+                url: '/end_purchases',
+                data: {num: select_num},
+                dataType: 'json'
+
+            }).done(function(data){
+                // レスポンス内容に書き換える
+                $("." + target_select_id + " > span")[0].innerHTML = data["name"]
+                $("." + target_select_id + " > span")[1].innerHTML = data["postal_code"]
+                $("." + target_select_id + " > span")[2].innerHTML = data["address"]
+                $("." + target_select_id + " > .y_purchases_address_tel > span")[0].innerHTML = data["telephone_number"]
+
+                // 選択されてることなる住所の数を計算
+                counter = {}
+                for( let i = 0 ; i < $(".y_purchases_address_select > select").length; i++ ){
+                    counter[$(".y_purchases_address_select > select")[i].options.selectedIndex] = true
+                }
+                Object.keys(counter).length
+                $(".y_postage").text(delimit(500 * Object.keys(counter).length))
+                $(".y_total_price").text(delimit(500 * Object.keys(counter).length + parseInt($(".y_all_price").text())))
+
+
+
+            }).fail(function(){
+                    alert('住所情報の取得に失敗しました')
+            })
+
+        });
+
+
+    });
 })
 
