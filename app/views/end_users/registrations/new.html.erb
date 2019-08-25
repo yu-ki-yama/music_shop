@@ -1,75 +1,82 @@
-<% if end_user_signed_in? %>
-  <%= render 'end_header/login_header' %>
-<% else %>
-  <%= render 'end_header/not_login_header' %>
-<% end %>
+<div class="t_body">
 
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
+    <div class="t_head">新規会員登録</div>
 
-  <div class="field">
-    <%= f.label :last_name_kana %><br />
-    <%= f.text_field :last_name_kana %>
-  </div>
+    <div class="t_area1">
 
-  <div class="field">
-    <%= f.label :first_name_kana %><br />
-    <%= f.text_field :first_name_kana %>
-  </div>
+      <div class='t_margin-head'>
+        <%= f.label "姓", class: 't_sei' %>
+        <%= f.label "名", class: 't_na' %>
+      </div>
 
-  <%= fields_for @address do |c| %>
+      <div>
+        <%= f.text_field "last_name", class: 't_sei-form' %>
+        <%= f.text_field "first_name", class: 't_na-form' %>
+      </div>
+
+    </div>
+
+
+    <div class="t_area2">
+
+      <div class='t_margin-head'>
+        <%= f.label "セイ", class: 't_sei-kana' %>
+        <%= f.label "メイ", class: 't_sei-mei' %>
+      </div>
+
+      <div>
+        　  <%= f.text_field "last_name_kana", class: 't_sei-kana-form' %>
+        <%= f.text_field "first_name_kana", class: 't_sei-mei-form' %>
+      </div>
+
+    </div>
+
+
+    <%= fields_for @address do |c| %>
+
+
+      <div class='t_margin-head'><%= c.label :postal_code, "郵便番号", class: 't_title' %></div>
+      <div><%= c.text_field :postal_code, class: 't_form' %> </div>
+
+      <div class='t_margin-head'><%= c.label :address, "住所", class: 't_title-new' %></div>
+      <div><%= c.text_field :address, class: 't_address-form' %></div>
+
+
+      <div class='t_margin-head'><%= c.label :telephone_number, "電話番号", class: 't_title' %></div>
+      <div><%= c.text_field :telephone_number, class: 't_form' %></div>
+
+    <% end %>
+
     <div class="field">
-      <%= c.label :postal_code %><br />
-      <%= c.text_field :postal_code %>
+      <%= f.hidden_field :delete_flag, :value => false %>
     </div>
 
-    <div class="t_field">
-      <%= c.label :address %><br />
-      <%= c.text_field :address %>
+
+    <div class='t_margin-head'><%= f.label :email, "メールアドレス", class: 't_title' %></div>
+    <div><%= f.email_field :email, autocomplete: "email", class: 't_address-form' %></div>
+
+
+    <div class='t_margin-head'><%= f.label :password, "パスワード", class: 't_title' %>
+      <% if @minimum_password_length %>
+        （<%= @minimum_password_length %>文字は最低限必要）
+      <% end %>
     </div>
 
-    <div class="field">
-      <%= c.label :telephone_number %><br />
-      <%= c.text_field :telephone_number %>
-    </div>
+    <div><%= f.password_field :password, autocomplete: "new-password", class: 't_form' %></div>
 
+
+    <div class='t_margin-head'><%= f.label :password_confirmation, "再入力パスワード", class: 't_title' %></div>
+    <div><%= f.password_field :password_confirmation, autocomplete: "new-password", class: 't_form' %></div>
+
+
+    <div class='t_position'>
+      <%= f.submit "登録", class: "t_btn_btn-default" %>
+    </div>
   <% end %>
 
-  <div class="field">
-    <%= f.hidden_field :delete_flag, :value => false %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+</div>

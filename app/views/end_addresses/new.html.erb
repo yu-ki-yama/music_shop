@@ -1,22 +1,40 @@
 <%= render 'end_header/login_header' %>
 
-<div style="text-align:center;"><h1>新規追加住所登録</h1></div>
+<div class="t_body">
+  <div class="t_head">新規追加住所登録</div>
 
-  <%= form_with model: @user, url: end_addresses_path, local: true do |form| %>
+   <%= form_with model: @user, url: end_addresses_path, local: true do |form| %>
 
-   <div style="text-align:center;"><h3>名前</h3></div>
-     <p class="text-center"><%= form.text_field :name %></p>
+    <div class="field">
+     <p class='t_title2'>名前</p>
+     <%= form.text_field :name, class: 't_form' %>
+    </div>
 
-   <div style="text-align:center;"><h3>郵便番号</h3></div>
-    <p class="text-center"><%= form.text_field :postal_code %></p>
 
-   <div style="text-align:center;"><h3>住所</h3></div>
-    <p class="text-center"><%= form.text_field :address %></p>
+    <div class="field">
+     <p class='t_title2'>郵便番号</p>
+     <%= form.text_field :postal_code, class: 't_form' %>
+    </div>
 
-   <div style="text-align:center;"><h3>電話番号</h3></div>
-    <p class="text-center"><%= form.text_field :telephone_number %></p>
 
-   <p class="text-center"><%= form.submit %></p>
+    <div class="field">
+     <p class='t_title2'>住所</p>
+     <%= form.text_field :address, class: 't_address-form' %>
+    </div>
 
-  <% end %>
+
+    <div class="field">
+     <p class='t_title2'>電話番号</p>
+     <%= form.text_field :telephone_number, class: 't_form' %>
+    </div>
+
+
+    <div class="t_position">
+     <%= form.submit '新規住所登録', class: "t_btn_btn-default"%>
+    </div>
+
+
+   <% end %>
+
+</div>
 

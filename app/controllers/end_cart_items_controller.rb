@@ -2,6 +2,7 @@ class EndCartItemsController < ApplicationController
   include DataFormat
 
   def index
+    @tax = 108
     cart_items = CartItem.where(end_user_id: current_end_user[:id])
     @carts = cart_items_format_array(cart_items)
     @is_able_purchase_list = stock_check_list(cart_items)
@@ -11,8 +12,12 @@ class EndCartItemsController < ApplicationController
   def update
   	carts = CartItem.where(end_user_id: current_end_user[:id])
     carts.each do |cart|
-      cart['purchase_quantity'] = params[cart['id'].to_s]
-      cart.save
+      if params[cart['id'].to_s] == "0"
+        cart.destroy
+      elsif cart['purchase_quantity'] != params[cart['id'].to_s]
+        cart['purchase_quantity'] = params[cart['id'].to_s]
+        cart.save
+      end
     end
 
     @is_able_purchase_list = stock_check_list(CartItem.where(end_user_id: current_end_user[:id]))

@@ -1,67 +1,65 @@
 <%= render 'end_header/login_header' %>
 
 <div class="container">
- 	<div class="row">
- 		<div class="col-xs-12">
- 			<h1>マイページ</h1>
- 		</div>
- 	</div>
- 	<div class="row">
-		<div class="col-xs-9">
-			<ul class="nav nav-pills">
-				<li class="active col-xs-5">
-					<a href= "#myfavorites" data-toggle="tab">いいね一覧</a>
-				</li>
-				<li class="col-xs-5">
-					<a href="#myaddresses" data-toggle="tab">登録住所一覧</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-9">
-			<div class="tab-content">
-				<div class="tab-pane active" id="myfavorites">
-					<h2>いいね一覧</h2>
-					<ul>
-						<% @myfavorites.each do |favorite| %>
-							<div class="row">
-								<div class="col-xs-5">
-									<li><%= attachment_image_tag favorite.item, :item_image, :fill, 200, 200, format: "jpeg" %></li>
-								</div>
-								<div class="col-xs-7">
-									<li>商品名:<%= link_to favorite.item.item_name, end_item_path(favorite.item.id) %></li>
-									<li>アーティスト名:<%= favorite.item.artist.artist_name %></li>
-								</div>
-							</div>
-						<% end %>
-					</ul>
-					<%= paginate @myfavorites %>
-				</div>
-				<div class="tab-pane" id="myaddresses">
-					<h2>登録住所一覧</h2>
-					<ul>
-						<% @myaddresses.each do |address| %>
-							<li>氏名:<%= address.name %></li>
-							<li>郵便番号:<%= address.postal_code %></li>
-							<li>住所:<%= address.address %></li>
-							<li>電話番号:<%= address.telephone_number %></li>
-							<div class="row">
-								<button type="button" class="btn-sm btn-danger col-xs-3">
-                					<%= link_to "削除", end_address_path(address.id), method: :delete %>
-              					</button>
-              				</div>
-						<% end %>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-3">
-			<%= link_to "ユーザー編集", edit_end_user_path(current_end_user.id) %><br>
-			<%= link_to "住所追加", new_end_address_path %><br>
-			<%= link_to "購入履歴" %><br><!-- 後で直す -->
-			<%= link_to "退会", unsubscribe_end_user_path %><br>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>マイページ</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-9">
+      <ul class="nav nav-pills">
+        <li class="active col-xs-5">
+          <a href="#myfavorites" data-toggle="tab">いいね一覧</a>
+        </li>
+        <li class="col-xs-5">
+          <a href="#myaddresses" data-toggle="tab">登録住所一覧</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-9">
+      <div class="tab-content">
+        <div class="tab-pane active" id="myfavorites">
+          <h2>いいね一覧</h2>
+          <ul>
+            <% @myfavorites.each do |favorite| %>
+              <div class="row">
+                <div class="col-xs-5">
+                  <li><%= attachment_image_tag favorite.item, :item_image, :fill, 200, 200, format: "jpeg" %></li>
+                </div>
+                <div class="col-xs-7">
+                  <li>商品名:<%= link_to favorite.item.item_name, end_item_path(favorite.item.id) %></li>
+                  <li>アーティスト名:<%= favorite.item.artist.artist_name %></li>
+                </div>
+              </div>
+            <% end %>
+          </ul>
+          <%= paginate @myfavorites %>
+        </div>
+        <div class="tab-pane" id="myaddresses">
+          <h2>登録住所一覧</h2>
+          <ul>
+            <% @myaddresses.each do |address| %>
+              <li>氏名:<%= address.name %></li>
+              <li>郵便番号:<%= address.postal_code %></li>
+              <li>住所:<%= address.address %></li>
+              <li>電話番号:<%= address.telephone_number %></li>
+              <div class="row">
+                <%= link_to "削除", end_address_path(address.id), method: :delete, class: "btn btn-danger" %>
+              </div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <%= link_to "ユーザー編集", edit_end_user_path(current_end_user.id) %><br>
+      <%= link_to "住所追加", new_end_address_path %><br>
+      <%= link_to "購入履歴" %><br><!-- 後で直す -->
+      <%= link_to "退会", unsubscribe_end_user_path %><br>
+    </div>
+  </div>
 </div>
 
