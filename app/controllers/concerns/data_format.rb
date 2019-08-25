@@ -67,7 +67,7 @@ module DataFormat
             :sale_number => cart['purchase_quantity'],
             :price_history => cart.item['price'],
             :item_name_history => cart.item['item_name'],
-            :artist_name_history => Artist.find(cart.item['artist_id']),
+            :artist_name_history => Artist.find(cart.item['artist_id'])["artist_name"],
             :method_of_payment => params['method_of_payment'],
             :item_image_id => cart.item['item_image_id'],
             :postal_code_history => address['postal_code'],

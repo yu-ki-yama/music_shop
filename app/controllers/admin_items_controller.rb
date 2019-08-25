@@ -43,9 +43,11 @@ class AdminItemsController < ApplicationController
       artist = artist[0]
     end
 
+
+
     item = Item.find(params['id'])
-    item['artist_id'] = artist['id']
-    item.save
+    params = item_params['artist_id'] = artist['id']
+    item.update(item_params)
 
     redirect_to admin_items_path
   end

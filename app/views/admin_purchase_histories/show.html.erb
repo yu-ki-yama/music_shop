@@ -1,8 +1,8 @@
-<%= render 'admin_header/header' %>
+<%= render 'admin_header/admin_header' %>
 
 <div><%= @purchase_history.shipping_status %></div>
 <div>
-  <%= @purchase_history.item_image %>
+  <%= attachment_image_tag @purchase_history, :item_image, :fill, 100, 100, format: "jpeg" %>
   <div>
   	<span>注文日：</span>
     <%= @purchase_history.created_at.strftime('%Y/%m/%d') %>

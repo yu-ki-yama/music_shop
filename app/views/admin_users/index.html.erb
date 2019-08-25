@@ -1,4 +1,5 @@
-<%= render 'admin_header/header' %>
+<%= render 'admin_header/admin_header' %>
+
 <div class="y_admin_user_content">
   <h2 class="y_h2">登録ユーザーの一覧</h2>
   <%= form_with url: search_admin_users_path, method: :get, local: true, class: "y_search_user_name" do |f| %>
