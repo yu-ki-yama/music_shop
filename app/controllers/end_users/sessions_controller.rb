@@ -9,9 +9,22 @@ class EndUsers::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    user = EndUser.find_by(email: params['end_user']['email'])
+
+    if user.blank?
+      session[:login_error] = true
+      session[:error] = "メールアドレスかパスワードが間違っています"
+      redirect_to new_end_user_session_path
+    elsif user['delete_flag']
+      session[:login_error] = true
+      session[:error] = "このユーザーはすでに退会されています"
+      redirect_to new_end_user_session_path
+    else
+      super
+    end
+
+  end
 
   # DELETE /resource/sign_out
   # def destroy

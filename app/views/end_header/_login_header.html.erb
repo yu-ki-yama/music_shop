@@ -19,7 +19,7 @@
 		<%= link_to "マイページ", end_user_path(current_end_user),class: "m_end-header-content" %>
 	  </div>
 	  <div class="col-md-1">
-		<%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "m_end-header-content" %>
+		<%= link_to "ログアウト", destroy_end_user_session_path, method: :get, class: "m_end-header-content" %>
 	  </div>
   </div>
 </div>
