@@ -3,14 +3,14 @@
     <li class="n_end_items_show_favorite">
       <%= link_to unfavorite_path(item), method: :delete, remote: true do %>
        <button class="btn btn-danger">いいね</button>
-       <i class="fa fa-heart fa-2x" id="heart-#{item.id}" aria-hidden="true" style="color: red;"></i>
+       <i class="fa fa-heart fa-2x n_end_items_show_favorite_icon" id="heart-#{item.id}" aria-hidden="true" style="color: red;"></i>
       <% end %>
     </li>
   <% else %>
     <li class="n_end_items_show_favorite">
      <%= link_to favorite_path(item), method: :post, remote: true do %>
        <button class="btn btn-danger">いいね</button>
-        <i class="fa fa-heart-o fa-2x" id="heart-#{item.id}" aria-hidden="true"></i>
+        <i class="fa fa-heart-o fa-2x n_end_items_show_favorite_icon" id="heart-#{item.id}" aria-hidden="true"></i>
      <% end %>
     </li>
   <% end %>

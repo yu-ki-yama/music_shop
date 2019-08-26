@@ -1,9 +1,9 @@
 <%= render 'end_header/login_header' %>
 
-<div class="container">
+<div class="container n_end_users_show_container">
   <div class="row">
     <div class="col-xs-12">
-      <h1>マイページ</h1>
+      <div class="n_end_users_show_title">マイページ</div>
     </div>
   </div>
   <div class="row">
@@ -22,7 +22,7 @@
     <div class="col-xs-9">
       <div class="tab-content">
         <div class="tab-pane active" id="myfavorites">
-          <h2>いいね一覧</h2>
+          <div class="n_end_users_show_favorite_line">いいね一覧</div>
           <ul>
             <% @myfavorites.each do |favorite| %>
               <div class="row">

@@ -1,11 +1,18 @@
 <div class="col-xs-3">
-	<% if item.stock > 0 %>
+	<% if item.stock > 0 && item.sale_condition == "販売中"%>
 		<li>
 			<%= link_to end_item_path(item.id) do %>
 				<%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %>
 			<% end %>
 		</li>
-	<% else %>
+	<% elsif item.sale_condition == "販売停止中" %>
+		<li class="n_end_items_index_discontinued_img">
+			<%= link_to end_item_path(item.id) do %>
+				<%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %>
+				<div class="n_sold_out_txt">販売停止中</div>
+			<% end %>
+		</li>
+	<% elsif item.stock == 0 %>
 		<li class="n_end_items_index_sold_out_img">
 			<%= link_to end_item_path(item.id) do %>
 				<%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %>
