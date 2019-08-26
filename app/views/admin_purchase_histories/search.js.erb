@@ -1,0 +1,21 @@
+$(".y_history_tbody").html('<%= escape_javascript(render("admin_purchase_histories/purechase_tbody", histories: @purchase_histories  )) %>');
+$(".y_history_counter").html('<%=  @purchase_histories.count %>');
+$(".y_history_search_btn > a").removeClass()
+
+<% if @select_mode == '受付中' %>
+  $(".y_history_search_btn > a:nth-child(1)").addClass('btn btn-danger');
+  $(".y_history_search_btn > a:nth-child(n+1)").addClass('btn btn-light y_btn_border');
+<% elsif @select_mode == '準備中' %>
+  $(".y_history_search_btn > a:nth-child(2)").addClass('btn btn-warning');
+  $(".y_history_search_btn > a:nth-child(1)").addClass('btn btn-light y_btn_border');
+  $(".y_history_search_btn > a:nth-child(n+2)").addClass('btn btn-light y_btn_border');
+
+<% elsif @select_mode == '発送済' %>
+  $(".y_history_search_btn > a:nth-child(3)").addClass('btn btn-success');
+  $(".y_history_search_btn > a:nth-child(4)").addClass('btn btn-light y_btn_border');
+  $(".y_history_search_btn > a:nth-child(-n+3)").addClass('btn btn-light y_btn_border');
+
+<% elsif @select_mode == '全表示' %>
+  $(".y_history_search_btn > a:nth-child(4)").addClass('btn btn-primary');
+  $(".y_history_search_btn > a:nth-child(-n+4)").addClass('btn btn-light y_btn_border');
+<% end %>

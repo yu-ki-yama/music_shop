@@ -13,11 +13,11 @@
     </tr>
   </thread>
   <tbody>
-  <% items.each do |item|%>
+  <% items.each do |item| %>
 
     <tr>
       <td><p><%= item['id'] %></p></td>
-      <td><%= image_tag attachment_url(item, :item_image, :fill, 80, 80, format: "jpg"),class: 'attachment user profile_image fallback' %></td>
+      <td><%= image_tag attachment_url(item, :item_image, :fill, 80, 80, format: "jpg"), class: 'attachment user profile_image fallback' %></td>
       <td><p><%= item['item_name'] %></p></td>
       <td><p><%= item['price'] %>円</p></td>
       <td>
@@ -30,14 +30,14 @@
       <td><p><%= item['stock'] %>枚</p></td>
       <td>
         <%= link_to end_item_path(item['id']) do %>
-          <i class="fa fa-music fa-2x fa-border" style="color: black" ></i>
+          <i class="fa fa-music fa-2x fa-border" style="color: black"></i>
         <% end %>
-          </td>
+      </td>
       <td>
         <%= link_to edit_admin_item_path(item['id']) do %>
           <i class="fa fa-edit fa-2x fa-border" style="color: black"></i>
         <% end %>
-          </td>
+      </td>
       <td>
         <%= link_to admin_item_path(item['id']), :method => :delete do %>
           <i class="fa fa-remove fa-2x fa-border" style="color: red"></i>
