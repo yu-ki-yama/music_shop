@@ -1,0 +1,153 @@
+.n_ranking_line {
+	border-bottom: 1px solid #acabab;
+}
+
+.n_ranking_numbers {
+	display: inline-block;
+	padding: 5px 13px;
+	background-color: #acabab;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 15px;
+}
+
+.n_end_items_index_sold_out_img {
+	position: relative;
+	width: 100px;
+}
+
+.n_end_items_index_sold_out_img::before {
+	background-color: rgba(0,0,0,0.4);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	content: ' ';
+	pointer-events: none;
+}
+
+.n_end_items_show_container {
+	position: relative;
+	margin: 10px;
+    padding: 10px;
+    border: solid 2px green;
+}
+
+.n_end_items_show_title {
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 0 9px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 40px;
+    background: green;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.n_end_items_show_item_name {
+	font-size: 30px;
+	font-weight: bold;
+	word-break: break-all;
+	line-height: 28px;
+	padding: 10px 0;
+}
+
+.n_end_items_show_artist_name {
+	font-size: 20px;
+	font-weight: bold;
+	word-break: break-all;
+	color: #005db9;
+	padding: 10px 0;
+}
+
+.n_end_items_show_sold_out_img {
+	position: relative;
+	width: 300px;
+	font-size: 30px;
+}
+
+.n_end_items_show_sold_out_img::before {
+	background-color: rgba(0,0,0,0.4);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	content: ' ';
+	pointer-events: none;
+}
+
+.n_sold_out_txt {
+	position: absolute;
+	color: white;
+	font-weight: bold;
+	font-size: 150%;
+	width: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.n_end_items_show_sale_condition {
+	display: inline-block;
+	margin: 10px 0;
+	padding: 5px 13px;
+	background-color: #acabab;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 15px;
+}
+
+.n_end_items_show_stock {
+	font-size: 25px;
+	font-weight: bold;
+	line-height: 28px;
+	padding: 10px 0;
+}
+
+.n_end_items_show_price {
+	padding-bottom: 20px;
+}
+
+.n_end_items_show_price_tag {
+	font-size: 20px;
+	line-height: 28px;
+	padding: 10px 0;
+}
+
+.n_end_items_show_price_number {
+	font-size: 25px;
+	line-height: 28px;
+	padding: 10px 0;
+	margin-left: 20%;
+	text-align: right;
+}
+
+.n_end_items_show_favorite {
+	list-style: none;
+	position: relative;
+	padding: 20px 0;
+}
+
+.fa-2x {
+	position: absolute;
+	top: 50%;
+	transform : translateY(-50%);
+	padding: 0 10px;
+}
+
+.n_end_items_show_genre {
+	padding-top: 30px;
+	font-weight: bold;
+}
+
+.n_end_items_show_label {
+	padding-top: 30px;
+	font-weight: bold;
+}

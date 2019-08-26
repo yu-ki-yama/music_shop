@@ -1,0 +1,3 @@
+$("<%= @id_name %>").html('<%= escape_javascript(render("favorite_links", item: @item  )) %>');
+$("<%= @id_heart %>").removeClass('fa-heart-o');
+$("<%= @id_heart %>").addClass('fa-heart');
