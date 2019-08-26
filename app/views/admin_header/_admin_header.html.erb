@@ -1,0 +1,17 @@
+<div class="y_admin_header">
+    <div>
+      <%= link_to "トップ", admin_purchase_histories_path, class: 'y_header_btn btn btn-success' %>
+    </div>
+    <div>
+      <%= link_to "商品追加", new_admin_item_path, class: 'y_header_btn btn btn-success y_btn2' %>
+    </div>
+    <div>
+      <%= link_to "商品一覧", admin_items_path, class: 'y_header_btn btn btn-success y_btn3' %>
+    </div>
+
+    <div>
+      <%= link_to "レビューの一覧", admin_reviews_path, class: 'y_header_btn_small btn btn-success y_btn4' %>
+      <%= link_to "ユーザーの一覧", admin_users_path, class: 'y_header_btn_small btn btn-success y_btn5' %>
+      <%= link_to "ログアウト", destroy_admin_user_session_path, method: :get, class: 'y_header_btn_small btn btn-success y_btn6' %>
+    </div>
+</div>

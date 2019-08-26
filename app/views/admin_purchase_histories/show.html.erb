@@ -1,0 +1,36 @@
+<%= render 'admin_header/admin_header' %>
+
+<div><%= @purchase_history.shipping_status %></div>
+<div>
+  <%= attachment_image_tag @purchase_history, :item_image, :fill, 100, 100, format: "jpeg" %>
+  <div>
+  	<span>注文日：</span>
+    <%= @purchase_history.created_at.strftime('%Y/%m/%d') %>
+    <span>購入数：</span>
+    <%= @purchase_history.sale_number %>
+  </div>
+  <div>
+    <span>商品名：</span>
+    <%= @purchase_history.item_name_history %>
+  </div>
+  <div>
+    <span>アーティスト名：</span>
+    <%= @purchase_history.artist_name_history %>
+  </div>
+  <div>
+    <span>ユーザーID：</span>
+    <%= @user_id %>
+    <span>ユーザー名：</span>
+    <%= @last_name %><%= @first_name %>
+  </div>
+</div>
+<div>
+  <span>宛先名：</span>
+  <%= @purchase_history.name_history %>
+  <span>電話番号：</span>
+  <%= @purchase_history.telephone_number_history %><br>
+  <span>〒</span>
+  <%= @purchase_history.postal_code_history %>
+  <span>住所：</span>
+  <%= @purchase_history.address_history %>
+</div>

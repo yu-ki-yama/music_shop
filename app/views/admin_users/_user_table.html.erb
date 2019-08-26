@@ -2,9 +2,9 @@
   <thread>
     <tr>
       <th style="width: 35px">ID</th>
-      <th style="width: 400px">ユーザー名</th>
-      <th style="width: 60px">編集</th>
-      <th style="width: 60px">削除</th>
+      <th style="width: 600px">ユーザー名</th>
+      <th style="width: 20px">編集</th>
+      <th style="width: 20px">削除</th>
     </tr>
   </thread>
   <tbody>
@@ -13,12 +13,12 @@
     <tr>
       <td><p><%= user['id'] %></p></td>
       <td><p><%= user['last_name'] + user['first_name'] %></p></td>
-      <td>
+      <td class="y_admin_user_i">
         <%= link_to edit_admin_user_path(user['id']) do %>
           <i class="fa fa-edit fa-2x fa-border" style="color: black"></i>
         <% end %>
       </td>
-      <td>
+      <td class="y_admin_user_i">
         <%= link_to admin_user_path(user['id']), :method => :delete do %>
           <i class="fa fa-remove fa-2x fa-border" style="color: red"></i>
         <% end %>

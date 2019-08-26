@@ -8,6 +8,6 @@
     <%= f.submit "検索",class: "y_search_button" %>
   <% end %>
 
-  <p>登録ユーザー数　<%= @users.count %>件</p>
+  <p>検索一致数　<%= @users.count %>件</p>
   <%= render "user_table", users: @users %>
 </div>

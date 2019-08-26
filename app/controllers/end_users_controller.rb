@@ -3,11 +3,19 @@ class EndUsersController < ApplicationController
 	def show
 		@user = EndUser.find(params[:id])
 		@myfavorites = @user.favorites.page(params[:page]).per(10).order(id: "DESC")
-		@myaddresses = @user.addresses
+		addresses = @user.addresses
+		sub_address = []
+		addresses.each do |address|
+			unless address['main_flag']
+				sub_address.push(address)
+			end
+		end
+		@myaddresses = sub_address
 	end
 
 	def unsubscribe
-  	end
+
+	end
 
 	def edit
 		@user = EndUser.find(params[:id])

@@ -6,5 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Genre.create(genre_name: 'JPOP')
-Label.create(label_name: 'KING')
+genres = %w(JPOP KPOP)
+labels = %w(DENON キングレコード)
+
+genres.each do |genre|
+  Genre.create(genre_name: genre)
+end
+labels.each do |label|
+  Label.create(label_name: label)
+end
+AdminUser.create(email:"test@gmail.com", password: "admin0212")
