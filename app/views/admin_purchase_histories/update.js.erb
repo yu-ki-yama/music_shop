@@ -1,0 +1,3 @@
+$(".y_history_tbody").html('<%= escape_javascript(render("admin_purchase_histories/purechase_tbody", histories: @purchase_histories  )) %>');
+$(".y_history_counter").html('<%=  @purchase_histories.count %>');
+

@@ -33,7 +33,12 @@
   <div class="y_image_upload">
     <h3 class="y_h3">カバー画像登録</h3>
     <div class="y_upload_view">
-      <%= image_tag '/assets/music.jpeg', :size => '256x256' %>
+      <% if request.path.split("/")[3] =='edit' %>
+        <%= attachment_image_tag item, :item_image, :fill, 256, 256, format: "jpeg" %>
+      <% else %>
+        <%= image_tag '/assets/music.jpeg', :size => '256x256' %>
+      <% end %>
+
     </div>
 
     <span class="y_image_title">ファイル名</span>
@@ -77,11 +82,18 @@
   <div class="y_price_form">
     <%= f.label :price, "税抜き価格", class: "y_h3" %> <br>
     <span>￥</span> <%= f.text_field :price, class: 'y_form_text_field input_number_only' , placeholder: '0', autocomplete: "off" %> <span>円(税抜き)</span> <br>
-    <div> <span>税込み価格　￥</span><span class="y_task_price">0</span><span>円(税込み)</span> </div>
+
+    <% if request.path.split("/")[3] =='edit' %>
+      <div> <span>税込み価格　￥</span><span class="y_task_price"><%= item['price'] * @tax / 100 %></span><span>円(税込み)</span> </div>
+    <% else %>
+      <div> <span>税込み価格　￥</span><span class="y_task_price">0</span><span>円(税込み)</span> </div>
+    <% end %>
+
   </div>
 
   <div class="y_stock_form">
     <%= f.label :stock, "在庫数",class: "y_h3" %> <br>
+
     <span>残り</span><%= f.text_field :stock, class: 'y_form_text_field', autocomplete: "off", placeholder: '0' %><span>枚</span> <br>
   </div>
 
