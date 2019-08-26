@@ -1,0 +1,19 @@
+<div id="all_items">
+	<div class="col-xs-12">
+		<h3>商品一覧</h3>
+	</div>
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="row">
+				<ul>
+					<%= render partial: "contents_of_each", collection: @all_items, as: :item %>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<%= paginate @all_items, param_name: :"all_page", remote: :true %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -4,75 +4,68 @@
 	<%= render 'end_header/not_login_header' %>
 <% end %>
 
-<div class="container">
- 	<div class="row">
+<div class="container n_end_items_show_container">
+	<div class="row">
 		<div class="col-xs-12">
-			<h3>商品詳細</h3>
+			<div class="n_end_items_show_title">商品詳細</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-4">
-			<div><%= attachment_image_tag @item, :item_image, :fill, 280, 280, format: "jpeg" %></div>
-		</div>
-		<div class="col-xs-4">
-			<div>
-				<p>▼アルバム・シングル名</p>
-				<%= @item.item_name %>
-			</div>
-			<div>
-				<p>▼アーティスト名</p>
-				<%= @item.artist.artist_name %>
-			</div>
-			<div>
-				<p>▼販売状況</p>
-				<%= @item.sale_condition %>
-			</div>
-			<div>
-				<p>▼在庫数</p>
-				<%= @item.stock %>
-			</div>
-		</div>
-		<div class="col-xs-4">
-			<div>
-				<p>▼価格</p>
-				<%= (BigDecimal(@item.price) * BigDecimal(@tax_rate)).ceil %>
-			</div>
-			<%= form_with url: add_end_cart_items_path, method: :post, local: true do |f| %>
-				<%= f.hidden_field :item_id, :value => @item.id %>
-                <%= f.label :purchase_quantity, "数量:" %>
-                <%= f.text_field :purchase_quantity %><br>
-                <%= f.submit "この商品をカートに入れる" %>
-      		<% end %>
-      		<% if end_user_signed_in? %>
-            	<% if @item.favorited_by?(current_end_user) %>
-  					<li>
-    					<%= link_to end_item_end_favorites_path(@item), method: :delete do %>
-      						いいね<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-    					<% end %>
-  					</li>
-				<% else %>
-  					<li>
-    					<%= link_to end_item_end_favorites_path(@item), method: :post do %>
-      						いいね<i class="fa fa-heart-o" aria-hidden="true"></i>
-    					<% end %>
-  					</li>
-				<% end %>
+			<% if @item.stock > 0 %>
+				<div><%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %></div>
 			<% else %>
+				<div class="n_end_items_show_sold_out_img">
+					<%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %>
+					<div class="n_sold_out_txt">売り切れ</div>
+				</div>
 			<% end %>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">
-			<div>
-				<p>▼ジャンル</p>
-				<%= @item.genre.genre_name %>
+		<div class="col-xs-4">
+			<div class="n_end_items_show_item_name"><%= @item.item_name %></div>
+			<div class="n_end_items_show_artist_name"><%= @item.artist.artist_name %></div>
+			<div class="n_end_items_show_sale_condition"><%= @item.sale_condition %></div>
+			<div class="n_end_items_show_stock">
+				在庫数:
+				<span><%= @item.stock %></span>
 			</div>
 		</div>
-		<div class="col-xs-6">
-			<div>
-				<p>▼レーベル</p>
-				<%= @item.label.label_name %>
+		<div class="col-xs-4">
+			<div class="n_end_items_show_price">
+				<div class="n_end_items_show_price_tag">価格(税込)</div>
+				<span class="n_end_items_show_price_number">¥<%= (BigDecimal(@item.price) * BigDecimal(@tax_rate)).ceil.to_s(:delimited) %></span>
 			</div>
+			<div>
+				<%= form_with url: add_end_cart_items_path, method: :post, local: true do |f| %>
+					<%= f.hidden_field :item_id, :value => @item.id %>
+					<%= f.label :purchase_quantity, "数量:" %>
+					<%= f.text_field :purchase_quantity %><br>
+					<%= f.submit "この商品をカートに入れる" %>
+				<% end %>
+			</div>
+			<%= render "end_favorites/favorite_links", item: @item %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 n_end_items_show_genre">
+			<table class="table table-hover table-bordered">
+				<tbody>
+					<tr class="info">
+						<td>ジャンル</td>
+						<td><%= @item.genre.genre_name %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-6 n_end_items_show_label">
+			<table class="table table-hover">
+				<tbody>
+					<tr class="info">
+						<td>レーベル</td>
+						<td><%= @item.label.label_name %></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<div class="row">
@@ -83,23 +76,27 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<% @item.discs.order("disc_number").each do |disc| %>
-				<h4>ディスク<%= disc.disc_number %></h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>
+								ディスク<%= disc.disc_number %>
 				<% disc.musics.order("music_order").each do |music| %>
-					<%= music.music_order %>
-					<%= music.music_name %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
+					<tbody>
+						<tr class="success">
+							<th><%= music.music_order %></th>
+							<td><%= music.music_name %></td>
 				<% end %>
+						</tr>
+					</tbody>
+							</th>
+						</tr>
+					</thead>
+				</table>
 			<% end %>
 		</div>
 	</div>
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-xs-12">
 			<h3>レビューを投稿する</h3>
 		</div>
@@ -131,5 +128,5 @@
 				<%= review.updated_at %>
 			<% end %>
 		</div>
-	</div>
+	</div>-->
 </div>
