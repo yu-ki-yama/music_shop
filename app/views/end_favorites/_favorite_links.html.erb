@@ -1,0 +1,17 @@
+<div class="favorite-link" id="favorite-link-<%= item.id %>">
+  <% if item.favorited_by?(current_end_user) %>
+    <li class="n_end_items_show_favorite">
+      <%= link_to unfavorite_path(item), method: :delete, remote: true do %>
+       <button class="btn btn-danger">いいね</button>
+       <i class="fa fa-heart fa-2x" id="heart-#{item.id}" aria-hidden="true" style="color: red;"></i>
+      <% end %>
+    </li>
+  <% else %>
+    <li class="n_end_items_show_favorite">
+     <%= link_to favorite_path(item), method: :post, remote: true do %>
+       <button class="btn btn-danger">いいね</button>
+        <i class="fa fa-heart-o fa-2x" id="heart-#{item.id}" aria-hidden="true"></i>
+     <% end %>
+    </li>
+  <% end %>
+</div>
