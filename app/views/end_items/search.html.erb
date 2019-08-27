@@ -1,37 +1,74 @@
 <% if end_user_signed_in? %>
-  <%= render 'end_header/login_header' %>
+	<%= render 'end_header/login_header' %>
 <% else %>
-  <%= render 'end_header/not_login_header' %>
+	<%= render 'end_header/not_login_header' %>
 <% end %>
 
-<div class="container">
- 	<div class="row">
+<div class="container n_end_items_search_container">
+	<div class="row">
 		<div class="col-xs-9">
-			<h4>検索結果</h4>
-			<p>商品の検索結果<%= @items.count %>件</p>
+			<h3 class="n_end_items_search_title">検索結果</h3>
+			<p class="n_end_items_search_count">商品の検索結果:<%= @items.count %>件</p>
 			<ul>
 				<% @items.each do |item| %>
-					<li><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: "jpeg" %></li>
-					<li><%= link_to item.item_name, end_item_path(item.id) %></li>
-					<li><%= item.artist.artist_name %></li>
-					<li><%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil %></li>
-					<li><%= item.genre.genre_name %></li>
-					<li><%= item.sale_condition %></li>
-					<li><%= item.label.label_name %></li>
-					<li>
-						<%= form_with url: add_end_cart_items_path, method: :post, local: true do |f| %>
-							<%= f.hidden_field :item_id, :value => item.id %>
-                			<%= f.label :purchase_quantity, "数量:" %>
-                			<%= f.text_field :purchase_quantity %><br>
-                			<%= f.submit "この商品をカートに入れる" %>
-                		<% end %>
-                	</li>
+					<div class="row n_end_items_search_items">
+						<div class="col-xs-3">
+							<% if item.stock > 0 && item.sale_condition == "販売中" %>
+								<li>
+									<%= link_to end_item_path(item.id) do %>
+										<%= attachment_image_tag item, :item_image, :fill, 200, 200, format: "jpeg" %>
+									<% end %>
+								</li>
+							<% elsif item.sale_condition == "販売停止中" %>
+								<li class="n_end_items_search_discontinued_img">
+									<%= link_to end_item_path(item.id) do %>
+										<%= attachment_image_tag item, :item_image, :fill, 200, 200, format: "jpeg" %>
+										<div class="n_search_sold_out_txt">販売停止中</div>
+									<% end %>
+								</li>
+							<% elsif item.stock == 0 %>
+								<li class="n_end_items_search_sold_out_img">
+									<%= link_to end_item_path(item.id) do %>
+										<%= attachment_image_tag item, :item_image, :fill, 200, 200, format: "jpeg" %>
+										<div class="n_search_sold_out_txt">売り切れ</div>
+									<% end %>
+								</li>
+							<% end %>
+						</div>
+						<div class="col-xs-5">
+							<li class="n_end_items_search_item_name"><%= link_to item.item_name.truncate(35), end_item_path(item.id) %></li>
+							<li class="n_end_items_search_artist_name"><%= item.artist.artist_name.truncate(20) %></li>
+							<li class="n_end_items_search_genre"><%= item.genre.genre_name %></li><br>
+							<div class="row">
+								<li class="col-xs-4 n_end_items_search_sale_condition"><%= item.sale_condition %></li>
+								<li class="col-xs-7 n_end_items_search_label"><%= item.label.label_name %></li>
+							</div>
+						</div>
+						<div class="col-xs-3">
+							<li>
+								<div class="n_end_items_search_price_tag">価格(税込)</div>
+								<div class="n_end_items_search_price_number">¥<%= (BigDecimal(item.price) * BigDecimal(@tax_rate)).ceil.to_s(:delimited) %></div>
+							</li>
+							<% if end_user_signed_in? %>
+								<% if item.stock > 0 && item.sale_condition == "販売中" %>
+									<li>
+										<%= form_with url: add_end_cart_items_path, method: :post, local: true do |f| %>
+											<div class="form-group">
+												<%= f.hidden_field :item_id, :value => item.id %>
+												<%= f.label :purchase_quantity, "数量" %>
+												<%= f.text_field :purchase_quantity, class:"form-control", placeholder:"ここに購入数を入力" %><br>
+												<%= f.submit "この商品をカートに入れる", class:"btn btn-primary" %>
+											</div>
+										<% end %>
+									</li>
+								<% end %>
+							<% end %>
+						</div>
+					</div>
 				<% end %>
 			</ul>
 			<%= paginate @items %>
 		</div>
-
-<%= render 'ranking', ranking: @ranking %>
-
+		<%= render 'ranking', ranking: @ranking %>
 	</div>
 </div>

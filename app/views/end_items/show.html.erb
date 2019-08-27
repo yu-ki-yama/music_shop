@@ -7,14 +7,19 @@
 <div class="container n_end_items_show_container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="n_end_items_show_title">商品詳細</div>
+			<h3 class="n_end_items_show_title">商品詳細</h3>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-4">
-			<% if @item.stock > 0 %>
-				<div><%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %></div>
-			<% else %>
+			<% if @item.stock > 0 && @item.sale_condition == "販売中" %>
+				<%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %>
+			<% elsif @item.sale_condition == "販売停止中" %>
+				<div class="n_end_items_show_sold_out_img">
+					<%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %>
+					<div class="n_sold_out_txt">販売停止中</div>
+				</div>
+			<% elsif @item.stock == 0 %>
 				<div class="n_end_items_show_sold_out_img">
 					<%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %>
 					<div class="n_sold_out_txt">売り切れ</div>
@@ -35,15 +40,23 @@
 				<div class="n_end_items_show_price_tag">価格(税込)</div>
 				<span class="n_end_items_show_price_number">¥<%= (BigDecimal(@item.price) * BigDecimal(@tax_rate)).ceil.to_s(:delimited) %></span>
 			</div>
-			<div>
-				<%= form_with url: add_end_cart_items_path, method: :post, local: true do |f| %>
-					<%= f.hidden_field :item_id, :value => @item.id %>
-					<%= f.label :purchase_quantity, "数量:" %>
-					<%= f.text_field :purchase_quantity %><br>
-					<%= f.submit "この商品をカートに入れる" %>
+			<% if end_user_signed_in? %>
+				<% if @item.stock > 0 && @item.sale_condition == "販売中" %>
+					<div>
+						<%= form_with url: add_end_cart_items_path, method: :post, local: true do |f| %>
+							<%= f.hidden_field :item_id, :value => @item.id %>
+							<%= f.label :purchase_quantity, "数量:" %>
+							<div class="row">
+								<p class="col-xs-7">
+									<%= f.text_field :purchase_quantity, class:"form-control", placeholder:"ここに購入数を入力" %>
+								</p>
+							</div>
+							<%= f.submit "この商品をカートに入れる", class:"btn btn-primary" %>
+						<% end %>
+					</div>
 				<% end %>
-			</div>
-			<%= render "end_favorites/favorite_links", item: @item %>
+				<%= render "end_favorites/favorite_links", item: @item %>
+			<% end %>
 		</div>
 	</div>
 	<div class="row">
@@ -96,37 +109,4 @@
 			<% end %>
 		</div>
 	</div>
-	<!-- <div class="row">
-		<div class="col-xs-12">
-			<h3>レビューを投稿する</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<%= form_for [@item, @review], url: end_item_end_reviews_path(@item) do |f| %>
-				<%= f.text_field :review_title, rows:'2', class: "form-control",placeholder: "タイトルをここに" %>
-				<%= f.text_area :review_body, rows:'5', class: "form-control",placeholder: "レビューをここに" %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">
-				<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-		</div>
-	</div>
-			<% end %>
-	<div class="row">
-		<div class="col-xs-12">
-			<h3>レビュー一覧</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<% @reviews.each do |review| %>
-				<%= review.review_title %>
-				<%= review.review_body %>
-				<%= review.created_at %>
-				<%= review.updated_at %>
-			<% end %>
-		</div>
-	</div>-->
 </div>
