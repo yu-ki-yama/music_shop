@@ -63,7 +63,7 @@ module DataFormat
         address = Address.find(params["address_name#{cart['id']}"].to_i)
         array << PurchaseDetail.new(
             :purchase_history_id => purchase_history_id,
-            :shipping_status => "受付",
+            :shipping_status => "受付中",
             :sale_number => cart['purchase_quantity'],
             :price_history => cart.item['price'],
             :item_name_history => cart.item['item_name'],

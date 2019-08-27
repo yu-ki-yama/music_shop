@@ -1,3 +1,5 @@
 <%= render 'admin_header/admin_header' %>
-<h2 class="y_h2">商品編集画面</h2>
-<%= render 'form', {item: @item, genre_model: @genre, label_model: @label}%>
+<div class="y_item_content">
+  <h2 class="y_h2">商品編集画面</h2>
+  <%= render 'form', {item: @item, genre_model: @genre, label_model: @label}%>
+</div>

@@ -17,6 +17,7 @@ class AdminItemsController < ApplicationController
     @item = item
     @genre = Genre.all
     @label = Label.all
+    @tax = 108
   end
 
   def create
@@ -43,11 +44,16 @@ class AdminItemsController < ApplicationController
       artist = artist[0]
     end
 
-
-
+    update_item = item_params
+    update_item['artist_id'] = artist['id']
     item = Item.find(params['id'])
-    params = item_params['artist_id'] = artist['id']
-    item.update(item_params)
+
+    if item_params['item_image_id'].nil?
+      update_item['item_image_id'] = item['item_image_id']
+      item.update(update_item)
+    else
+      item.update(update_item)
+    end
 
     redirect_to admin_items_path
   end

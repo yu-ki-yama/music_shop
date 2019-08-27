@@ -1,0 +1,24 @@
+
+<% histories.each do |history| %>
+  <tr>
+    <td><div class="y_history_id"><%= history['id'] %></div></td>
+    <td><%= history['created_at'].strftime('%Y/%m/%d') %></td>
+
+    <% if history['shipping_status'] == '受付中' %>
+      <td><%= link_to history['shipping_status'],admin_purchase_history_path(history['id']), method: :put,remote: true, class: 'btn btn-danger'%></td>
+    <% elsif history['shipping_status'] == '準備中' %>
+      <td><%= link_to history['shipping_status'],admin_purchase_history_path(history['id']), method: :put,remote: true, class: 'btn btn-warning'%></td>
+    <% elsif history['shipping_status'] == '発送済' %>
+      <td><%= link_to history['shipping_status'],admin_purchase_history_path(history['id']), method: :put,remote: true, class: 'btn btn-success'%></td>
+    <% end %>
+
+    <td><%= history['item_name_history'] %></td>
+    <td><div class="y_history_sale_number"><%= history['sale_number'] %>枚</div></td>
+    <td><%= history['name_history'] %></td>
+    <td>
+      <%= link_to admin_purchase_history_path(history['id']) do %>
+        <i class="fa fa-address-card-o fa-2x fa-border" style="color: black"></i>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

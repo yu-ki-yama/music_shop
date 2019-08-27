@@ -7,13 +7,13 @@
 <div class="container n_end_items_show_container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="n_end_items_show_title">商品詳細</div>
+			<h3 class="n_end_items_show_title">商品詳細</h3>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-4">
 			<% if @item.stock > 0 && @item.sale_condition == "販売中" %>
-				<div><%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %></div>
+				<%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %>
 			<% elsif @item.sale_condition == "販売停止中" %>
 				<div class="n_end_items_show_sold_out_img">
 					<%= attachment_image_tag @item, :item_image, :fill, 300, 300, format: "jpeg" %>
@@ -40,17 +40,21 @@
 				<div class="n_end_items_show_price_tag">価格(税込)</div>
 				<span class="n_end_items_show_price_number">¥<%= (BigDecimal(@item.price) * BigDecimal(@tax_rate)).ceil.to_s(:delimited) %></span>
 			</div>
-			<% if @item.stock > 0 && @item.sale_condition == "販売中" %>
-				<div>
-					<%= form_with url: add_end_cart_items_path, method: :post, local: true do |f| %>
-						<%= f.hidden_field :item_id, :value => @item.id %>
-						<%= f.label :purchase_quantity, "数量:" %>
-						<%= f.text_field :purchase_quantity %><br>
-						<%= f.submit "この商品をカートに入れる" %>
-					<% end %>
-				</div>
-			<% end %>
 			<% if end_user_signed_in? %>
+				<% if @item.stock > 0 && @item.sale_condition == "販売中" %>
+					<div>
+						<%= form_with url: add_end_cart_items_path, method: :post, local: true do |f| %>
+							<%= f.hidden_field :item_id, :value => @item.id %>
+							<%= f.label :purchase_quantity, "数量:" %>
+							<div class="row">
+								<p class="col-xs-7">
+									<%= f.text_field :purchase_quantity, class:"form-control", placeholder:"ここに購入数を入力" %>
+								</p>
+							</div>
+							<%= f.submit "この商品をカートに入れる", class:"btn btn-primary" %>
+						<% end %>
+					</div>
+				<% end %>
 				<%= render "end_favorites/favorite_links", item: @item %>
 			<% end %>
 		</div>

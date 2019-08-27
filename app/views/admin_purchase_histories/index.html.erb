@@ -1,29 +1,31 @@
 <%= render 'admin_header/admin_header' %>
-<div style="width: 900px; margin: 0 auto;">
-<table class="table-bordered m_table">
-  <thead>
-    <tr>
-      <th class="m_table-head" style="width: 45px">ID</th>
-      <th class="m_table-head" style="width: 110px">注文日</th>
-      <th class="m_table-head" style="width: 80px">状態</th>
-      <th class="m_table-head" style="width: 315px">シングル/アルバム名</th>
-      <th class="m_table-head" style="width: 260px">歌手名</th>
-      <th class="m_table-head" style="width: 45px">枚数</th>
-      <th class="m_table-head" style="width: 45px">詳細</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @purchase_histories.each do |p| %>
+
+<div class="y_history_content">
+  <div class="y_history_search_btn">
+    <%= link_to '受付中', search_admin_purchase_histories_path('受付中'), method: :get,remote: true, class: 'btn btn-danger'%>
+    <%= link_to '準備中', search_admin_purchase_histories_path('準備中'), method: :get,remote: true, class: 'btn btn-light y_btn_border'%>
+    <%= link_to '発送済', search_admin_purchase_histories_path('発送済'), method: :get,remote: true, class: 'btn btn-light y_btn_border'%>
+    <%= link_to '全表示', search_admin_purchase_histories_path('全表示'), method: :get,remote: true, class: 'btn btn-light y_btn_border '%>
+  </div>
+
+
+  <p>購入履歴件数　<span class="y_history_counter"><%= @purchase_histories.count %></span>件</p>
+  <table class="table table-bordered table-hover y_item_table" style="font-size: 20px; width: 900px;">
+    <tbody>
       <tr>
-        <td><%= p.id %></td>
-        <td><%= p.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= p.shipping_status %></td>
-        <td><%= p.item_name_history %></td>
-        <td><%= p.artist_name_history %></td>
-        <td><%= p.sale_number %></td>
-        <td><%= link_to "", admin_purchase_history_path(p.id), class: "glyphicon glyphicon-arrow-right" %></td>
+        <th style="width: 40px">ID</th>
+        <th style="width: 100px">注文日</th>
+        <th style="width: 80px">状態</th>
+        <th style="width: 350px">シングル/アルバム名</th>
+        <th style="width: 65px">枚数</th>
+        <th style="width: 150px">宛名</th>
+        <th style="width: 65px">詳細</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+
+    <tbody class="y_history_tbody">
+      <%= render 'admin_purchase_histories/purechase_tbody' , histories: @purchase_histories %>
+    </tbody>
+
+  </table>
 </div>
