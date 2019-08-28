@@ -34,8 +34,7 @@ class EndUsersController < ApplicationController
 				redirect_to destroy_end_user_session_path, method: :delete
 			end
 		end
-			redirect_to end_item_path(36)
-			# 後で書き換えます
+			redirect_to end_items_path
 	end
 
 	private

@@ -1,82 +1,71 @@
-<div class="t_body">
+<%= render 'end_header/not_login_header' %>
 
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-
-    <div class="t_head">新規会員登録</div>
-
-    <div class="t_area1">
-
-      <div class='t_margin-head'>
-        <%= f.label "姓", class: 't_sei' %>
-        <%= f.label "名", class: 't_na' %>
-      </div>
-
-      <div>
-        <%= f.text_field "last_name", class: 't_sei-form' %>
-        <%= f.text_field "first_name", class: 't_na-form' %>
-      </div>
-
-    </div>
-
-
-    <div class="t_area2">
-
-      <div class='t_margin-head'>
-        <%= f.label "セイ", class: 't_sei-kana' %>
-        <%= f.label "メイ", class: 't_sei-mei' %>
-      </div>
-
-      <div>
-        　  <%= f.text_field "last_name_kana", class: 't_sei-kana-form' %>
-        <%= f.text_field "first_name_kana", class: 't_sei-mei-form' %>
-      </div>
-
-    </div>
-
-
-    <%= fields_for @address do |c| %>
-
-
-      <div class='t_margin-head'><%= c.label :postal_code, "郵便番号", class: 't_title' %></div>
-      <div><%= c.text_field :postal_code, class: 't_form' %> </div>
-
-      <div class='t_margin-head'><%= c.label :address, "住所", class: 't_title-new' %></div>
-      <div><%= c.text_field :address, class: 't_address-form' %></div>
-
-
-      <div class='t_margin-head'><%= c.label :telephone_number, "電話番号", class: 't_title' %></div>
-      <div><%= c.text_field :telephone_number, class: 't_form' %></div>
-
-    <% end %>
-
-    <div class="field">
-      <%= f.hidden_field :delete_flag, :value => false %>
-    </div>
-
-
-    <div class='t_margin-head'><%= f.label :email, "メールアドレス", class: 't_title' %></div>
-    <div><%= f.email_field :email, autocomplete: "email", class: 't_address-form' %></div>
-
-
-    <div class='t_margin-head'><%= f.label :password, "パスワード", class: 't_title' %>
-      <% if @minimum_password_length %>
-        （<%= @minimum_password_length %>文字は最低限必要）
-      <% end %>
-    </div>
-
-    <div><%= f.password_field :password, autocomplete: "new-password", class: 't_form' %></div>
-
-
-    <div class='t_margin-head'><%= f.label :password_confirmation, "再入力パスワード", class: 't_title' %></div>
-    <div><%= f.password_field :password_confirmation, autocomplete: "new-password", class: 't_form' %></div>
-
-
-    <div class='t_position'>
-      <%= f.submit "登録", class: "t_btn_btn-default" %>
-    </div>
-  <% end %>
-
+<div class="container n_end_users_registrations_container">
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-4">
+			<h3 class="n_end_users_registrations_title col-xs-12">新規会員登録</h3>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1">
+			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+				<%= render "devise/shared/error_messages", resource: resource %>
+				<%= f.hidden_field :delete_flag, :value => false %>
+				<div class="row">
+					<div class="col-xs-6 form-group">
+						<%= f.label :last_name, "姓" %>
+						<%= f.text_field "last_name", class: "form-control" %>
+					</div>
+					<div class="col-xs-6 form-group">
+						<%= f.label :first_name, "名" %>
+						<%= f.text_field "first_name", class: "form-control" %>
+					</div>
+					<div class="col-xs-6 form-group">
+						<%= f.label :last_name_kana, "カナ(姓)" %>
+						<%= f.text_field "last_name_kana", class: "form-control" %>
+					</div>
+					<div class="col-xs-6 form-group">
+						<%= f.label :first_name_kana, "カナ(名)" %>
+						<%= f.text_field "first_name_kana", class: "form-control" %>
+					</div>
+					<%= fields_for @address do |c| %>
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-xs-6 form-group">
+									<%= c.label :postal_code, "郵便番号" %>
+									<%= c.text_field :postal_code, class: "form-control" %>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 form-group">
+							<%= c.label :address, "住所" %>
+							<%= c.text_field :address, class: "form-control" %>
+						</div>
+						<div class="col-xs-6 form-group">
+							<%= c.label :telephone_number, "電話番号" %>
+							<%= c.text_field :telephone_number, class: "form-control" %>
+						</div>
+					<% end %>
+					<div class="col-xs-6 form-group">
+						<%= f.label :email, "メールアドレス" %>
+						<%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+					</div>
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-6 form-group">
+								<%= f.label :password, "パスワード" %>
+								<%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+								<span id="helpBlock" class="help-block">パスワードは半角英数字<%= @minimum_password_length %>文字以上で入力して下さい。</span>
+							</div>
+							<div class="col-xs-6 form-group">
+								<%= f.label :password_confirmation, "再入力パスワード" %>
+								<%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-4 col-xs-offset-4 n_end_users_registrations_submit">
+						<%= f.submit "登録", class: "btn btn-primary col-xs-12" %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>
