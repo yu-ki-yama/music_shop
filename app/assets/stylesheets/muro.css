@@ -54,11 +54,12 @@
 
 .m_end-header {
     height: 60px;
-    background-color: #DCDCDC;
+    background-color: #C0C0C0;
 }
 
 .m_login {
     text-align: center;
+    color: brown;
 }
 
 .m_search-box {
@@ -68,6 +69,8 @@
 
 .m_shop_name {
     margin-top: 20px;
+    font-size: 20px;
+    color: white;
 }
 
 .m_shop_name:hover {
@@ -75,12 +78,13 @@
 }
 
 .m_end-header-content {
-    padding: 0;
+    text-align: center;
+    color: white;
 }
 
 .m_end-header-content:hover {
     text-decoration: none;
-
+}
 .m_table {
     text-align: center;
     font-size: 20px;

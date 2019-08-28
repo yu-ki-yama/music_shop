@@ -1,19 +1,21 @@
 <div class="container m_end-header">
-  <div class="row">
+  <div class="row" style="margin-top: 15px;">
       <div class="col-md-2">
-		<%= link_to "MUSIC SHOP", end_items_path, class: 'm.shop_name' %>
+		<%= link_to "MUSIC SHOP", end_items_path, class: 'm_shop_name' %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-7">
 		<%= form_with url: search_end_items_path, method: :get, local: :true do |f| %>
-		  <%= f.text_field :search, class: "input-xlarge"  %>
-		  <%= f.submit "検索", class: 'm.submit_button' %>
+		  <%= f.text_field :search, class: "m_search-box", placeholder: "シングル/アルバム名" %>
+		  <%= f.submit "検索", class: 'btn btn-default' %>
 		<% end %>
 	  </div>
-	  <div class="col-md-1">
-		<%= link_to "ログイン", new_end_user_session_path %>
+	  <div class="col-md-1" style="padding: 0; margin-top: 5px;">
+		<%= link_to "ログイン", new_end_user_session_path, class: "m_end-header-content" %>
 	  </div>
-	  <div class="col-md-1">
-		<%= link_to "新規登録", new_end_user_registration_path %>
+	  <div class="col-md-1" style="padding: 0; margin-top: 5px;">
+		<%= link_to "新規登録", new_end_user_registration_path, class: "m_end-header-content" %>
 	  </div>
   </div>
 </div>
