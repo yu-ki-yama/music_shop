@@ -26,7 +26,5 @@ class EndItemsController < ApplicationController
 	def show
 		@tax_rate = "1.08"
 		@item = Item.find(params[:id])
-		@review = Review.new
-		@reviews = Review.includes(:artist).page(params[:page]).per(5).order(id: "DESC")
 	end
 end

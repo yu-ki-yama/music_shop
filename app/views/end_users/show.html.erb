@@ -3,7 +3,7 @@
 <div class="container n_end_users_show_container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="n_end_users_show_title">マイページ</div>
+			<h3 class="n_end_users_show_title">マイページ</h3>
 		</div>
 	</div>
 	<div class="row">
@@ -54,29 +54,10 @@
 		</div>
 		<div class="col-xs-3">
 			<div class="row">
-				<button class="col-xs-10 btn btn-danger n_end_users_show_menu_botton">
-					<div class="n_end_users_show_menu">
-						<i class="fa fa-user fa-2x"></i>
-						<%= link_to "ユーザー編集", edit_end_user_path(current_end_user.id), style: "color:white;" %>
-					</div>
-				</button>
-				<button class="col-xs-10 btn btn-success n_end_users_show_menu_botton">
-					<div class="n_end_users_show_menu">
-						<i class="fa fa-home fa-2x"></i>
-						<%= link_to "住所追加", new_end_address_path, style: "color:white;" %>
-					</div>
-				</button>
-				<button class="col-xs-10 btn btn-info n_end_users_show_menu_botton">
-					<div class="n_end_users_show_menu">
-						<i class="fa fa-shopping-cart fa-2x"></i>
-						<%= link_to "購入履歴", end_purchase_histories_path, style: "color:white;" %>
-				</button>
-				<button class="col-xs-10 btn btn-warning n_end_users_show_menu_botton">
-					<div class="n_end_users_show_menu">
-						<i class="fa fa-times-circle fa-2x"></i>
-						<%= link_to "退会", unsubscribe_end_user_path, style: "color:white;" %>
-					</div>
-				</button>
+				<%= link_to "ユーザー編集", edit_end_user_path(current_end_user.id), style: "color:white;", class: "col-xs-10 btn btn-danger n_end_users_show_menu_botton fa fa-user fa-2x n_end_users_show_menu" %>
+				<%= link_to "住所追加", new_end_address_path, style: "color:white;", class: "col-xs-10 btn btn-success n_end_users_show_menu_botton fa fa-home fa-2x" %>
+				<%= link_to "購入履歴", end_purchase_histories_path, style: "color:white;", class: "col-xs-10 btn btn-info n_end_users_show_menu_botton fa fa-shopping-cart fa-2x" %>
+				<%= link_to "退会", unsubscribe_end_user_path, style: "color:white;", class: "col-xs-10 btn btn-warning n_end_users_show_menu_botton fa fa-times-circle fa-2x" %>
 			</div>
 		</div>
 	</div>

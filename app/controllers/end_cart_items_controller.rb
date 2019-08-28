@@ -41,7 +41,7 @@ class EndCartItemsController < ApplicationController
     cart['end_user_id'] = current_end_user['id']
     cart['purchase_quantity'] = params['purchase_quantity']
   	cart.save
-    redirect_to end_item_path(params['item_id'])
+    redirect_to end_items_path
   end
 
 end
