@@ -1,11 +1,11 @@
 .n_ranking_line {
-	border-bottom: 1px solid #acabab;
+	border-bottom: 1px solid #337ab7;
 }
 
 .n_ranking_numbers {
 	display: inline-block;
 	padding: 5px 13px;
-	background-color: #acabab;
+	background-color: #337ab7;
 	border-radius: 3px;
 	color: #fff;
 	font-size: 15px;
@@ -220,14 +220,11 @@
 	padding: 10px 0;
 }
 
-.n_end_users_show_menu {
-	font-size: 20px;
-	font-weight: bold;
-	text-align: left;
-}
-
 .n_end_users_show_menu_botton {
 	margin-top: 50px;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: left;
 }
 
 .n_end_users_show_address_title {
@@ -452,4 +449,16 @@
 	position: absolute;
 	right: 70px;
 	top: 20px;
+}
+
+.n_end_items_index_ranking_title {
+	display: inline-block;
+	margin-bottom: 30px;
+	padding: 0 9px;
+	height: 50px;
+	line-height: 50px;
+	background: #337ab7;
+	border-radius: 5px;
+	color: #ffffff;
+	font-weight: bold;
 }
