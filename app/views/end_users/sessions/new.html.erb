@@ -6,11 +6,13 @@
 			<h3 class="n_end_users_sessions_title col-xs-12">ログイン画面</h3>
 		</div>
 
-		<% if session[:login_error] %>
-			<h3 class="y_h3" style="color: red; text-align: center"> <%= session.delete(:error) %></h3>
-			<% session.delete(:login_error) %>
-			<% session.delete(:error) %>
-		<% end %>
+    <div class="col-xs-12">
+      <% if session[:login_error] %>
+        <h3 class="y_h3" style="color: red; text-align: center"> <%= session.delete(:error) %></h3>
+        <% session.delete(:login_error) %>
+        <% session.delete(:error) %>
+      <% end %>
+    </div>
 
 		<div class="col-xs-4 col-xs-offset-4">
 			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

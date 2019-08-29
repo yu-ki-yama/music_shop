@@ -19,16 +19,12 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    puts '0000000000000000000000'
-    puts params['controller']
-    puts params['action']
-    puts params.inspect
 
     if params["controller"] == 'end_users/sessions' && params["action"] == 'new' || params["action"] == 'create'
       # アクセスを許可する
     elsif params["controller"] == 'admin_users/sessions' && params["action"] == 'new' || params["action"] == 'create'
       # アクセスを許可する
-    elsif params["controller"] == 'end_items' && params["action"] == 'index' || params["action"] == 'show'
+    elsif params["controller"] == 'end_items' && params["action"] == 'index' || params["action"] == 'show' || params["action"] == 'search'
       # アクセスを許可する
     elsif params["controller"] == 'end_users/registrations' && params["action"] == 'new' || params["action"] == 'create'
       # アクセスを許可する

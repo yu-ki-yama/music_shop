@@ -9,9 +9,17 @@ class AdminUsers::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    user = AdminUser.find_by(email: params['admin_user']['email'])
+
+    if user.blank?
+      session[:login_error] = true
+      session[:error] = "メールアドレスかパスワードが間違っています"
+      redirect_to new_admin_user_session_path
+    else
+      super
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
