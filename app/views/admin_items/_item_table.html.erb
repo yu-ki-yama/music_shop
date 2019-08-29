@@ -39,7 +39,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to admin_item_path(item['id']), :method => :delete do %>
+        <%= link_to admin_item_path(item['id']), :method => :delete, class:'delete_check' do %>
           <i class="fa fa-remove fa-2x fa-border" style="color: red"></i>
         <% end %>
       </td>

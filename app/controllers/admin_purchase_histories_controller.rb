@@ -10,7 +10,7 @@ class AdminPurchaseHistoriesController < ApplicationController
 
     history_details = []
     purchase_details.each do |history|
-      unless history['id'] == params['id']
+      unless history['id'] == params['id'].to_i
         history_details.push(history)
       end
     end
@@ -21,14 +21,14 @@ class AdminPurchaseHistoriesController < ApplicationController
   end
 
   def update
-    purchase_history = PurchaseDetail.find(params[:id])
+    @purchase_history = PurchaseDetail.find(params[:id])
 
-    if purchase_history['shipping_status'] == '受付中'
-      purchase_history['shipping_status'] = '準備中'
-      purchase_history.save
-    elsif purchase_history['shipping_status'] == '準備中'
-      purchase_history['shipping_status'] = '発送済'
-      purchase_history.save
+    if @purchase_history['shipping_status'] == '受付中'
+      @purchase_history['shipping_status'] = '準備中'
+      @purchase_history.save
+    elsif @purchase_history['shipping_status'] == '準備中'
+      @purchase_history['shipping_status'] = '発送済'
+      @purchase_history.save
     end
 
     @purchase_histories = PurchaseDetail.where(shipping_status: '受付中')

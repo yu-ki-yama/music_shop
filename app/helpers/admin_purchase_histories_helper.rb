@@ -9,4 +9,5 @@ module AdminPurchaseHistoriesHelper
     end
     arrays
   end
+
 end

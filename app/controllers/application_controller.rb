@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user
+
   def after_sign_in_path_for(resource)
     case resource
     when AdminUser
@@ -15,4 +17,20 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+
+  def authenticate_user
+
+    # if params["controller"].split("_")[0] == 'admin'
+    #   unless admin_user_signed_in?
+    #     # redirect_to
+    #   end
+    #
+    # elsif params["controller"].split("_")[0] == 'end'
+    #   puts '----------------------'
+    #   puts end_user_signed_in?
+    #
+    # end
+
+  end
+
 end

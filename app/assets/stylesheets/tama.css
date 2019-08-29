@@ -4,15 +4,10 @@
     box-sizing: border-box;
 }
 
-.head{
-    background-color: orange;
-    width: 1000px;
-    height: 60px;
-}
-
 .y_item_content{
     width: 1000px;
     padding: 0 50px;
+    margin: 0 auto;
 }
 
 .y_h2{
@@ -521,6 +516,7 @@ input[readonly] {
 .y_admin_user_content{
     width: 1000px;
     padding: 0 50px;
+    margin: 0 auto;
 }
 
 .test{
@@ -654,6 +650,7 @@ input[readonly] {
     padding: 0 50px;
     font-size: 20px;
     margin-top: 40px;
+    margin: 0 auto;
 }
 
 .y_purchases_main_content{
@@ -812,6 +809,7 @@ input[readonly] {
     background: #a5ffac;
     padding: 10px;
     position: relative;
+    margin: 0 auto;
 }
 
 .y_header_btn{
@@ -843,24 +841,16 @@ y_header_btn_small{
     left: 580px;
 }
 
-
-.y_btn4{
-    position: absolute;
-    top: 10px;
-    left: 870px;
-    width: 120px;
-}
-
 .y_btn5{
     position: absolute;
-    top: 52px;
+    top: 22px;
     left: 870px;
     width: 120px;
 }
 
 .y_btn6{
     position: absolute;
-    top: 94px;
+    top: 84px;
     left: 870px;
     width: 120px;
 }
@@ -874,6 +864,7 @@ y_header_btn_small{
 .y_history_content{
     width: 1000px;
     padding: 0 50px;
+    margin: 0 auto;
 }
 
 .y_history_content > p{
@@ -901,6 +892,181 @@ a.btn.btn-light.y_btn_border {
     border: 3px solid;
 }
 
-.y_history_id, .y_history_sale_number{
+.y_history_id, .y_history_sale_number, .y_history_id{
     text-align: center;
+}
+
+.y_history_tbody> tr > td > .btn{
+    font-size: 20px;
+}
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+.y_admin_purchase_detail_content{
+    width: 1000px;
+    padding: 0 50px;
+    margin: 0 auto;
+}
+
+.y_admin_purchase_detail_content > h2{
+    text-align: center;
+}
+
+.y_admin_purchase_create > div{
+    font-size: 30px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.y_admin_purchase_create > div:nth-child(1){
+    width: 600px;
+    padding-left: 325px;
+}
+
+.y_admin_purchase_create > div:nth-child(2){
+    width: 290px;
+    text-align: right;
+    color: red;
+}
+
+.y_admin_purchase_id{
+    text-align: left;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 300px;
+    padding-left: 20px;
+    border-top: 3px solid;
+    border-left: solid 3px;
+    border-right: solid 3px;
+    border-radius: 25px 0 0 0px;
+}
+
+.y_admin_purchase_detail_content_border{
+    border: 5px double black;
+    padding: 20px;
+}
+
+.y_admin_purchase_detail_main_content{
+    position: relative;
+    font-size: 25px;
+}
+
+.y_admin_purchase_detail_main_content_detail{
+    position: absolute;
+    top: 0;
+    left: 220px;
+    width: 630px;
+}
+
+.y_admin_purchase_detail_main_content_detail > p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    border-bottom: solid 3px;
+}
+
+.y_admin_purchase_detail_main_content_detail_item{
+    padding-left: 20px;
+}
+
+.y_admin_purchase_detail_main_content_detail_sale > div{
+    display: inline-block;
+}
+
+.y_admin_purchase_detail_main_content_detail_sale > div:nth-child(1){
+    width: 340px;
+}
+
+.y_admin_purchase_detail_main_content_detail_sale > div:nth-child(2){
+    width: 280px;
+    text-align: right;
+    display: inline-block;
+}
+
+.y_admin_purchase_detail_main_content_detail_sale{
+    border-bottom: solid 3px;
+}
+
+.y_bold{
+    font-weight: bold;
+}
+
+.y_red{
+    color: red;
+}
+
+.y_admin_purchase_detail_status_btn{
+    position: absolute;
+    top: -10px;
+    left: 750px;
+}
+
+.y_admin_purchase_detail_status_btn > .btn{
+    font-size: 25px;
+}
+
+.y_admin_purchase_detail_address > div:nth-child(-n+2){
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.y_admin_purchase_detail_address > div:nth-child(1){
+    width: 450px;
+}
+
+.y_admin_purchase_detail_address > div:nth-child(2){
+    width: 390px;
+    text-align: right;
+}
+
+.y_admin_purchase_detail_address > div:nth-child(4) {
+    padding-left: 20px;
+    border-bottom: solid 3px;
+    margin-bottom: 20px;
+}
+
+.y_admin_purchase_detail_sub{
+    position: relative;
+    font-size: 25px;
+}
+
+.y_full_name{
+    position: absolute;
+    top: -60px;
+    left: 270px;
+    width: 600px;
+    text-align: right;
+}
+
+/*---------------------------------*/
+.y_paginate{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.y_status_red{
+    background-color: red;
+    width: 100px;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+
+.y_status_yellow{
+    background-color: yellow;
+    width: 100px;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+
+}
+
+.y_status_green{
+    background-color: greenyellow;
+    width: 100px;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+
 }

@@ -158,6 +158,7 @@ $(document).on("turbolinks:load", function() {
         });
     });
 
+    //+-のボタンカウンター
     $(function(){
         $('.y_plus').on('click', function(e) {
             let displayTargetClass = ".quantity" + e.toElement.classList['1']
@@ -230,15 +231,51 @@ $(document).on("turbolinks:load", function() {
                 }
                 Object.keys(counter).length
                 $(".y_postage").text(delimit(500 * Object.keys(counter).length))
-                $(".y_total_price").text(delimit(500 * Object.keys(counter).length + parseInt($(".y_all_price").text())))
+                $(".y_total_price").text(delimit(500 * Object.keys(counter).length + Number($(".y_all_price").text().replace(/,/g, ''))))
 
 
 
             }).fail(function(){
-                    alert('住所情報の取得に失敗しました')
-            })
+                alert('住所情報の取得に失敗しました')
 
+                $("." + target_select_id + " > span")[0].innerHTML = '住所情報の取得に失敗しました'
+                $("." + target_select_id + " > span")[1].innerHTML = '住所情報の取得に失敗しました'
+                $("." + target_select_id + " > span")[2].innerHTML = '住所情報の取得に失敗しました'
+                $("." + target_select_id + " > .y_purchases_address_tel > span")[0].innerHTML = '住所情報の取得に失敗しました'
+
+                // 選択されてることなる住所の数を計算
+                counter = {}
+                for( let i = 0 ; i < $(".y_purchases_address_select > select").length; i++ ){
+                    counter[$(".y_purchases_address_select > select")[i].options.selectedIndex] = true
+                }
+                Object.keys(counter).length
+                $(".y_postage").text(delimit(500 * Object.keys(counter).length))
+                $(".y_total_price").text(delimit(500 * Object.keys(counter).length + Number($(".y_all_price").text().replace(/,/g, ''))))
+            })
         });
+
+        $(function(){
+            $(function(){
+                $('.shipping_status_check').on('click', function(e) {
+                    if( !confirm("発送済になりますがよろしいでしょうか？")　== true ) {
+                        alert("取り消しました");
+                        return false
+                    }
+                });
+            });
+        });
+
+        $(function(){
+            $(function(){
+                $('.delete_check').on('click', function(e) {
+                    if( !confirm("削除しますがよろしいでしょうか？")　== true ) {
+                        alert("取り消しました");
+                        return false
+                    }
+                });
+            });
+        });
+
 
 
     });

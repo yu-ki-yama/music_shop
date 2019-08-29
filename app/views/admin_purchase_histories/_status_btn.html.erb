@@ -1,0 +1,7 @@
+<% if history['shipping_status'] == '受付中' %>
+  <%= link_to history['shipping_status'],admin_purchase_history_path(history['id']), method: :put,remote: true, class: 'btn btn-danger'%>
+<% elsif history['shipping_status'] == '準備中' %>
+  <%= link_to history['shipping_status'],admin_purchase_history_path(history['id']), method: :put,remote: true, class: 'btn btn-warning shipping_status_check'%>
+<% elsif history['shipping_status'] == '発送済' %>
+  <%= link_to history['shipping_status'],admin_purchase_history_path(history['id']), method: :put,remote: true, class: 'btn btn-success'%>
+<% end %>
