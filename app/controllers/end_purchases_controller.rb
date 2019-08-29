@@ -43,12 +43,14 @@ class EndPurchasesController < ApplicationController
       array = purchase_details_array(purchase_history['id'], cart_items, params)
       PurchaseDetail.import array
 
-      #販売個数を商品に反映
+      #販売個数を在庫に反映して販売数にも反映
       purchase_amount_list = request_purchase_amount_list(cart_items)
       purchase_amount_list.each do |item_id, amount|
         item = Item.find(item_id.to_i)
         item['stock'] -= amount
+        item['sale_number'] += amount
         item.save
+
       end
 
       #カート初期化
@@ -74,8 +76,6 @@ class EndPurchasesController < ApplicationController
       end
 
       if stock_check_list(cart_items).length == 0
-        session[:cart_error] = true
-        session[:error] = "カートが空です"
         redirect_to end_cart_items_path
       end
 

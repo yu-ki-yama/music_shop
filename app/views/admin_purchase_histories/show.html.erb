@@ -1,45 +1,123 @@
 <%= render 'admin_header/admin_header' %>
 
-
-
 <div class="y_admin_purchase_detail_content">
-  <%= @purchase_history['created_at'].strftime('%Y/%m/%d')%>
-  <%= @purchase_history['total_price'] %>
-  <%#= @purchase_history.enduser%>
+  <h2 class="y_h2"> 発注伝票詳細</h2>
 
-  <div class="y_admin_purchase_detail_main_content">
-    <%= attachment_image_tag @purchase_detail, :item_image, :fill, 100, 100, format: "jpeg" %>
-    <%= @purchase_detail['shipping_status'] %>
-    <%= @purchase_detail['item_name_history'] %>
-    <%= @purchase_detail['artist_name_history'] %>
-    <%= @purchase_detail['sale_number'] %>
-    <%= @purchase_detail['price_history'] %>
-    <%= @purchase_detail['name_history'] %>
-    <%= @purchase_detail['postal_code_history'] %>
-    <%= @purchase_detail['address_history'] %>
-    <%= @purchase_detail['telephone_number_history'] %>
+  <div class="y_admin_purchase_create">
+    <div>注文日 <%= @purchase_history['created_at'].strftime('%Y/%m/%d') %></div>
+    <div>総計 ￥ <%= @purchase_history['total_price'].to_s(:delimited) %>円</div>
   </div>
 
-  <div class="y_admin_purchase_detail_sub_content">
+  <div class="y_admin_purchase_id">
+    伝票番号： <%= @purchase_history['id'] %>
+  </div>
+
+  <div class="y_admin_purchase_detail_content_border">
+
+    <div class="y_admin_purchase_detail_main_content">
+      <%= attachment_image_tag @purchase_detail, :item_image, :fill, 200, 200, format: "jpeg" %>
+      <div class="y_full_name">注文者：<%= full_name(@purchase_detail.purchase_history.end_user) %> </div>
+
+      <div class="y_admin_purchase_detail_main_content_detail">
+        <p>発注ID： <%= @purchase_detail['id'] %></p>
+        <div class="y_bold">商品名</div>
+        <div class="y_admin_purchase_detail_main_content_detail_item">
+          <%= @purchase_detail['item_name_history'] %>
+        </div>
+        <div>
+          <span class="y_bold">歌手名</span>：<%= @purchase_detail['artist_name_history'] %>
+        </div>
+
+        <div class="y_admin_purchase_detail_main_content_detail_sale">
+          <div>
+            <span class="y_bold">購入数</span>：<%= @purchase_detail['sale_number'] %>枚
+          </div>
+          <div class="y_red">
+            小計 ￥ <%= @purchase_detail['price_history'].to_s(:delimited) %>円
+          </div>
+        </div>
+      </div>
+
+      <div class="y_admin_purchase_detail_status_btn" id="y_btn<%= @purchase_detail['id'] %>">
+       <%= render 'admin_purchase_histories/status_btn', history: @purchase_detail %>
+      </div>
+
+
+      <div class="y_admin_purchase_detail_address">
+        <div>
+          <span class="y_bold">宛名</span>：<%= @purchase_detail['name_history'] %>
+        </div>
+        <div>
+          <span class="y_bold">電話番号</span>：<%= @purchase_detail['telephone_number_history'] %>
+        </div>
+        <div>
+          〒<%= @purchase_detail['postal_code_history'] %>
+        </div>
+        <div>
+          <%= @purchase_detail['address_history'] %>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="y_admin_purchase_detail_sub_content">
 
       <% @sub_purchase_details.each do |history| %>
         <div class="y_admin_purchase_detail_sub">
-          <%= attachment_image_tag history, :item_image, :fill, 100, 100, format: "jpeg" %>
-          <%= history['shipping_status'] %>
-          <%= history['item_name_history'] %>
-          <%= history['artist_name_history'] %>
-          <%= history['sale_number'] %>
-          <%= history['price_history'] %>
-          <%= history['name_history'] %>
-          <%= history['postal_code_history'] %>
-          <%= history['address_history'] %>
-          <%= history['telephone_number_history'] %>
+          <%= attachment_image_tag history, :item_image, :fill, 200, 200, format: "jpeg" %>
+
+          <div class="y_admin_purchase_detail_main_content_detail">
+            <p>発注ID： <%= history['id'] %></p>
+            <div class="y_bold">シングル/アルバム名</div>
+            <div class="y_admin_purchase_detail_main_content_detail_item">
+              <%= history['item_name_history'] %>
+            </div>
+            <div>
+              <span class="y_bold">歌手名</span>：<%= history['artist_name_history'] %>
+            </div>
+
+            <div class="y_admin_purchase_detail_main_content_detail_sale">
+              <div>
+                <span class="y_bold">購入数</span>：<%= history['sale_number'] %>枚
+              </div>
+              <div class="y_red">
+                小計 ￥ <%= history['price_history'].to_s(:delimited) %>円
+              </div>
+            </div>
+          </div>
+
+          <div class="y_admin_purchase_detail_status_btn" id="y_btn<%= history['id'] %>">
+            <%= render 'admin_purchase_histories/status_btn', history: history %>
+          </div>
+
+
+          <div class="y_admin_purchase_detail_address">
+            <div>
+              <span class="y_bold">宛名</span>：<%= history['name_history'] %>
+            </div>
+            <div>
+              <span class="y_bold">電話番号</span>：<%= history['telephone_number_history'] %>
+            </div>
+            <div>
+              〒<%= history['postal_code_history'] %>
+            </div>
+            <div>
+              <%= history['address_history'] %>
+            </div>
+
+          </div>
+
+
+
         </div>
       <% end %>
 
-
+    </div>
 
   </div>
+
+
 
 </div>
 

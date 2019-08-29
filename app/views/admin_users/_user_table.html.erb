@@ -19,7 +19,7 @@
         <% end %>
       </td>
       <td class="y_admin_user_i">
-        <%= link_to admin_user_path(user['id']), :method => :delete do %>
+        <%= link_to admin_user_path(user['id']), :method => :delete, class:'delete_check' do %>
           <i class="fa fa-remove fa-2x fa-border" style="color: red"></i>
         <% end %>
       </td>

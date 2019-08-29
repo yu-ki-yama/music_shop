@@ -19,3 +19,12 @@ $(".y_history_search_btn > a").removeClass()
   $(".y_history_search_btn > a:nth-child(4)").addClass('btn btn-primary');
   $(".y_history_search_btn > a:nth-child(-n+4)").addClass('btn btn-light y_btn_border');
 <% end %>
+
+$(function(){
+    $('.shipping_status_check').on('click', function(e) {
+        if( !confirm("発送済になりますがよろしいでしょうか？")　== true ) {
+            alert("取り消しました");
+            return false
+        }
+    });
+});

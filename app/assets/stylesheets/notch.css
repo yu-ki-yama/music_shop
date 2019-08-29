@@ -135,12 +135,12 @@
 	padding: 20px 0;
 }
 
-.fa-2x {
-	position: absolute;
-	top: 50%;
-	transform : translateY(-50%);
-	padding: 0 10px;
-}
+/*.fa-2x {*/
+/*	position: absolute;*/
+/*	top: 50%;*/
+/*	transform : translateY(-50%);*/
+/*	padding: 0 10px;*/
+/*}*/
 
 .n_end_items_show_genre {
 	padding-top: 30px;

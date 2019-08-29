@@ -1,3 +1,19 @@
 $(".y_history_tbody").html('<%= escape_javascript(render("admin_purchase_histories/purechase_tbody", histories: @purchase_histories  )) %>');
 $(".y_history_counter").html('<%=  @purchase_histories.count %>');
+$(".y_history_search_btn > a").removeClass()
+$(".y_history_search_btn > a:nth-child(1)").addClass('btn btn-danger');
+$(".y_history_search_btn > a:nth-child(n+1)").addClass('btn btn-light y_btn_border');
+
+//詳細ページでボタンを押した場合
+$("#y_btn<%= @purchase_history['id']%>").html('<%= escape_javascript(render("admin_purchase_histories/status_btn", history: @purchase_history )) %>')
+
+$(function(){
+    $('.shipping_status_check').on('click', function(e) {
+        if( !confirm("発送済になりますがよろしいでしょうか？")　== true ) {
+            alert("取り消しました");
+            return false
+        }
+    });
+});
+
 
