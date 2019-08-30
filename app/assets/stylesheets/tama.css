@@ -649,8 +649,7 @@ input[readonly] {
     width: 1000px;
     padding: 0 50px;
     font-size: 20px;
-    margin-top: 40px;
-    margin: 0 auto;
+    margin: 40px auto 0 auto;
 }
 
 .y_purchases_main_content{
