@@ -1,6 +1,5 @@
 <div class="container n_end_users_sessions_container">
   <div class="row">
-<!--    <div class="col-xs-4 col-xs-offset-4">-->
       <h3 class="y_h3" style="text-align: center">管理者用ログイン画面</h3>
       <div>
         <% if session[:login_error] %>
@@ -9,11 +8,6 @@
           <% session.delete(:error) %>
         <% end %>
       </div>
-
-<!--    </div>-->
-
-
-
 
     <div class="col-xs-4 col-xs-offset-4">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

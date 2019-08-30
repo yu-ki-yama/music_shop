@@ -1,49 +1,113 @@
 <%= render 'admin_header/admin_header' %>
 
-<div class="container">
- 	<div class="row">
-		<div class="col-xs-12">
-			<h2>管理者用ユーザー情報編集</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-3">
-			<%= form_with model: @user, url: admin_user_path, local: true do |f| %>
-				<%= f.label :last_name, "姓" %><br>
-				<%= f.text_field :last_name %><br>
-		</div>
-		<div class="col-xs-3">
-				<%= f.label :first_name, "名" %><br>
-				<%= f.text_field :first_name %><br>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-3">
-				<%= f.label :last_name_kana, "カナ(姓)" %><br>
-				<%= f.text_field :last_name_kana %><br>
-		</div>
-		<div class="col-xs-3">
-				<%= f.label :first_name_kana, "カナ(名)" %><br>
-				<%= f.text_field :first_name_kana %><br>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-				<%= f.fields_for :addresses do |a| %>
-      				<%= render "end_users/address_fields", f: a %>
-      			<% end %>
-      			<%= f.label :email, "メールアドレス" %><br>
-      			<%= f.email_field :email %><br>
-      			<%= f.label :current_password, "現在のパスワード" %><br>
-      			<%= f.password_field :current_password %><br>
-      			<%= f.label :password, "変更後のパスワード" %><br>
-      			<%= f.password_field :password %><br>
-      			<%= f.label :password_confirmation, "変更後のパスワード(再確認)" %><br>
-      			<%= f.password_field :password_confirmation %><br>
-      			<%= f.label :usually_payment, "よく使う支払い方法" %><br>
-      			<%= f.select :usually_payment, EndUser.usually_payments.keys.to_a, {} %><br>
-      			<%= f.submit "ユーザー情報を更新" %>
-			<% end %>
-		</div>
-	</div>
+<!--<div class="container">-->
+<!-- 	<div class="row">-->
+<!--		<div class="col-xs-12">-->
+<!--			<h2>管理者用ユーザー情報編集</h2>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--	<div class="row">-->
+<!--		<div class="col-xs-3">-->
+			<%#= form_with model: @user, url: admin_user_path, local: true do |f| %>
+<!--				<%#= f.label :last_name, "姓" %><br>-->
+<!--				<%#= f.text_field :last_name %><br>-->
+<!--		</div>-->
+<!--		<div class="col-xs-3">-->
+<!--				<%#= f.label :first_name, "名" %><br>-->
+<!--				<%#= f.text_field :first_name %><br>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--	<div class="row">-->
+<!--		<div class="col-xs-3">-->
+<!--				<%#= f.label :last_name_kana, "カナ(姓)" %><br>-->
+<!--				<%#= f.text_field :last_name_kana %><br>-->
+<!--		</div>-->
+<!--		<div class="col-xs-3">-->
+<!--				<%#= f.label :first_name_kana, "カナ(名)" %><br>-->
+<!--				<%#= f.text_field :first_name_kana %><br>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--	<div class="row">-->
+<!--		<div class="col-xs-12">-->
+				<%#= f.fields_for :addresses do |a| %>
+      				<%#= render "end_users/address_fields", f: a %>
+      			<%# end %>
+<!--      			<%#= f.label :email, "メールアドレス" %><br>-->
+<!--      			<%#= f.email_field :email %><br>-->
+<!--      			<%#= f.label :current_password, "現在のパスワード" %><br>-->
+<!--      			<%#= f.password_field :current_password %><br>-->
+<!--      			<%#= f.label :password, "変更後のパスワード" %><br>-->
+<!--      			<%#= f.password_field :password %><br>-->
+<!--      			<%#= f.label :password_confirmation, "変更後のパスワード(再確認)" %><br>-->
+<!--      			<%#= f.password_field :password_confirmation %><br>-->
+<!--      			<%#= f.label :usually_payment, "よく使う支払い方法" %><br>-->
+<!--      			<%#= f.select :usually_payment, EndUser.usually_payments.keys.to_a, {} %><br>-->
+      			<%#= f.submit "ユーザー情報を更新" %>
+			<%# end %>
+<!--		</div>-->
+<!--	</div>-->
+<!--</div>-->
+
+<div class="y_admin_user_edit_content">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="y_end_users_edit_title">管理者用ユーザー編集</h3>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1">
+      <%= form_with model: @user, local: true do |f| %>
+        <div class="row y_edit_row">
+          <div class="col-xs-6 form-group">
+            <%= f.label :last_name, "姓" %>
+            <%= f.text_field "last_name", class: "form-control" %>
+          </div>
+          <div class="col-xs-6 form-group">
+            <%= f.label :first_name, "名" %>
+            <%= f.text_field "first_name", class: "form-control" %>
+          </div>
+          <div class="col-xs-6 form-group">
+            <%= f.label :last_name_kana, "カナ(姓)" %>
+            <%= f.text_field "last_name_kana", class: "form-control" %>
+          </div>
+          <div class="col-xs-6 form-group">
+            <%= f.label :first_name_kana, "カナ(名)" %>
+            <%= f.text_field "first_name_kana", class: "form-control" %>
+          </div>
+          <%= f.fields_for :addresses do |a| %>
+            <%= render "admin_users/address_fields", f: a %>
+          <% end %>
+          <div class="col-xs-6 form-group">
+            <%= f.label :email, "メールアドレス" %>
+            <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+          </div>
+          <div class="col-xs-12">
+            <div class="row y_edit_row">
+              <div class="col-xs-6 form-group">
+                <%= f.label :current_password, "現在のパスワード" %>
+                <%= f.password_field :current_password, autocomplete: "current_password", class: "form-control" %>
+              </div>
+            </div>
+            <div class="row y_edit_row">
+              <div class="col-xs-6 form-group">
+                <%= f.label :password, "変更後のパスワード" %>
+                <%= f.password_field :password, autocomplete: "password", class: "form-control" %>
+              </div>
+              <div class="col-xs-6 form-group">
+                <%= f.label :password_confirmation, "変更後のパスワード(再確認)" %>
+                <%= f.password_field :password_confirmation, autocomplete: "password_confirmation", class: "form-control" %>
+              </div>
+              <div class="col-xs-6 form-group">
+                <%= f.label :usually_payment, "よく使う支払い方法" %>
+                <%= f.select :usually_payment, EndUser.usually_payments.keys.to_a, {}, class: "form-control" %>
+              </div>
+            </div>
+            <div class="row y_edit_row">
+              <div class="col-xs-12 n_end_users_edit_submit y_end_users_edit_submit">
+                <%= f.submit "ユーザー情報を更新", class: "btn btn-primary col-xs-6 col-xs-offset-3" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

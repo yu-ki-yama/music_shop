@@ -1068,5 +1068,35 @@ a.btn.btn-light.y_btn_border {
     text-align: center;
     height: 50px;
     line-height: 50px;
+}
 
+.y_admin_user_edit_content{
+    width: 1000px;
+    margin: 20px auto 0 auto;
+    padding: 10px;
+    border: solid 2px #5CB85C;
+    font-size: 30px;
+}
+
+.y_edit_row > .form-group > .form-control{
+    font-size: 25px;
+}
+
+.y_end_users_edit_title{
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 0 9px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 40px;
+    background: #5CB85C;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.y_end_users_edit_submit > input {
+    height: 80px;
+    font-size: 30px;
 }

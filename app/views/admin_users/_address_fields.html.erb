@@ -1,0 +1,27 @@
+<div class="nested-fields">
+	<%= f.hidden_field :id %>
+	<div class="col-xs-12">
+		<div class="row y_edit_row">
+			<div class="col-xs-6 form-group">
+				<%= f.label :postal_code, "郵便番号" %>
+				<%= f.text_field :postal_code, class: "form-control" %>
+			</div>
+		</div>
+	</div>
+
+<div class=" y_edit_row">
+  <div class="col-xs-12 form-group">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+</div>
+
+	<div class="col-xs-12">
+		<div class="row y_edit_row">
+			<div class="col-xs-6 form-group">
+				<%= f.label :telephone_number, "電話番号" %>
+				<%= f.text_field :telephone_number, class: "form-control" %>
+			</div>
+		</div>
+	</div>
+</div>

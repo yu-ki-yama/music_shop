@@ -31,12 +31,16 @@ class ApplicationController < ActionController::Base
     elsif params["controller"].split("_")[0] == 'admin'
 
       unless admin_user_signed_in?
+        session[:login_error] = true
+        session[:error] = 'ログインが必要です。ログインしてください'
         redirect_to new_admin_user_session_path
       end
 
     elsif params["controller"].split("_")[0] == 'end'
 
       unless end_user_signed_in?
+        session[:login_error] = true
+        session[:error] = 'ログインが必要です。ログインしてください'
         redirect_to new_end_user_session_path
       end
 

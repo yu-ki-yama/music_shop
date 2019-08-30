@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :end_items, only: [:index, :show]do
-    resources :end_reviews, only: [:create]
+    # resources :end_reviews, only: [:create]
     get 'search', :on => :collection
   end
 
@@ -34,9 +34,9 @@ Rails.application.routes.draw do
     get 'search', :on => :collection
   end
 
-  resources :admin_reviews, only: [:edit, :update, :destroy, :index]do
-    get 'search', :on => :collection
-  end
+  # resources :admin_reviews, only: [:edit, :update, :destroy, :index]do
+  #   get 'search', :on => :collection
+  # end
 
   resources :admin_purchase_histories, only: [:update, :show, :index]do
     get 'search', :on => :collection
