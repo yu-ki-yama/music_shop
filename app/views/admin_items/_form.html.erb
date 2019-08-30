@@ -36,7 +36,7 @@
       <% if request.path.split("/")[3] =='edit' %>
         <%= attachment_image_tag item, :item_image, :fill, 256, 256, format: "jpeg" %>
       <% else %>
-        <%= image_tag '/assets/music.jpeg', :size => '256x256' %>
+        <img src="/images/music.jpeg" alt="imgタグ" width="256" height="256">
       <% end %>
 
     </div>
