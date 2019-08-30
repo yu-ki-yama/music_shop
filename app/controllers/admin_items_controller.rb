@@ -28,7 +28,21 @@ class AdminItemsController < ApplicationController
       artist = artist[0]
     end
 
-    item = Item.new(item_params)
+    update_params = item_params
+
+    if item_params['item_image'] == '{}'
+      update_params['item_image'] = File.open("./app/assets/images/music.jpeg")
+    end
+
+    if item_params['price'] == ''
+      update_params['price'] = 0
+    end
+
+    if item_params['stock'] == ''
+      update_params['stock'] = 0
+    end
+
+    item = Item.new(update_params)
     item['sale_number'] = 0
     item['artist_id'] = artist['id']
     item.save
